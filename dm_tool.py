@@ -7,17 +7,24 @@ os.system('cls')
 print('Here are the files you can choose from:')
 weather_files = os.listdir('./weather/')
 print('')
+i_of_f = 0
 for i in weather_files:
+	i_of_f += 1
 	if i != "weather gen":
-		print("\t{}".format(i))
-temp = input("\nPlease enter the file name: ")
+		print("\t{}  {}".format(i_of_f,i))
+		if (i_of_f-1)%10 == 9:
+			print('')
+temp = input("Please enter the file name: ")
 # if there is none specified use the default
 if temp == "":
 	file = "weather/arctic_forest_weather_5year.csv"
 else:
+	# see if it's just a number
+	if temp in ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"]:
+		temp = weather_files[int(temp)-1]
 	# otherwise make sure that there is a .csv
 	if ".csv" in temp:
-		file = temp
+		file = 'weather/{}'.format(temp)
 	else:
 		file = 'weather/{}.csv'.format(temp)
 
