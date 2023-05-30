@@ -1,0 +1,1 @@
+"assorted herbs | diverse uses | 10", "mushrooms | food/spices | 1", "mushroom spores | spell component | 1", "nettle leaves | healing tea/veg soup | 1", "peas |  split dried | to make pea soup", "sessali | antidote WW/JJ/UU/FF | 5", "water cherry | helps scurvy/prevents excema | 5"

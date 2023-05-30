@@ -1,0 +1,1 @@
+"dragonwort | smallpox/plague | 10", "giant bee honey | cures 1d3+1 hp | 10", "assorted herbs | diverse uses | 10", "moutnain garlic | repels spirits | 5", "mushrooms | food/spices | 1", "mushroom spores | spell component | 1", "nettle leaves | healing tea/veg soup | 1", "palma eldath | warmth | 5", "spring adonis | relieves heart | 5", "thyme | antiseptic appetizer | 10"

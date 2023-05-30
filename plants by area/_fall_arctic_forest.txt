@@ -1,0 +1,1 @@
+"giant bee honey | cures 1d3+1 hp | 10", "assorted herbs | diverse uses | 10", "laishaberries | healing/disease | 10", "mushrooms | food/spices | 1", "mushroom spores | spell component | 1", "nettle leaves | healing tea/veg soup | 1", "oak acorns | surrogate coffee | 25", "peas | to make pea soup | 10 ", "pine cone | thermo-hydro register | 6", "suaeysit | energy | 5"

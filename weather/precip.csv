@@ -1,0 +1,12 @@
+precip,viz_day,viz_twi,viz_moon,viz_dark
+"No Precipitation",500,300,50,25
+"Trace Rain (<1/8 inch)",400,250,50,25
+"Light Rain (<1/2 inch)",400,250,50,25
+"Moderate Rain (<3/4 inch)",150,100,25,15
+"Heavy Rain (<1.5 inch)",50,30,15,10
+"Trace Snow (1/2 inch)",400,250,50,25
+"Light Snow (1 inch)",400,250,50,25
+"Moderate Snow (2 inch)",150,100,25,15
+"Heavy Snow (4 inch)",50,30,15,10
+"Ice/Sleet Storm",50,30,15,10
+"Severe Snowstorm",20,20,10,5
