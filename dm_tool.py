@@ -797,6 +797,48 @@ def market():
 	print(output)
 	xyz = input("Press Enter to return ")
 
+# Proficiencies
+def profs():
+	os.system('cls')
+	print('                                           Proficiencies')
+	print('===================================================================================================')
+	print(' 1  Agriculture          20  Endurance             37  Mining                55  Survival')
+	print(' 2  Ancient History      21  Engineering           38  Mountaineering        56  Swimming')
+	print(' 3  Animal Handling      22  Etiquette             39  Musical Instrument')
+	print(' 4  Animal Lore                                                              57  Tightrope Walking')
+	print(' 5  Animal Training      23  Fire-building         40  Navigation            58  Tracking')
+	print(' 6  Appraising           24  Fishing                                         59  Tumbling')
+	print(' 7  Armorer              25  Forgery               41  Pottery')
+	print(' 8  Artistic Ability                                                         60  Ventriloquism')
+	print(' 9  Astrology            26  Gaming                42  Reading Lips')
+	print('                         27  Gem Cutting           43  Reading/Writing       61  Weaponsmithing')
+	print('10  Blacksmithing                                  44  Religion              62  Weather Sense')
+	print('11  Blind-fighting       28  Healing               45  Riding, Airborne      63  Weaving')
+	print('12  Bowyer/Fletcher      29  Heraldry              46  Riding, Land-Based')
+	print('13  Brewing              30  Herbalism             47  Rope Use')
+	print('                         31  Hunting               48  Running')
+	print('14  Charioteering')
+	print('15  Cobbling             32  Juggling              49  Seamanship')
+	print('16  Cooking              33  Jumping               50  Seamstress/Tailor')
+	print('                                                   51  Set Snares')
+	print('17  Dancing              34  Languages, Ancient    52  Singing')
+	print('18  Direction Sense      35  Languages, Modern     53  Spellcraft')
+	print('19  Disguise             36  Local History         54  Stonemasonry')
+	print('')
+	p = input("what proficiency? ")
+	with open('proficiencies/proficiencies.txt') as prof_file:
+		prof_file = prof_file.readlines()
+	p = prof_file[int(p)-1]
+	p = p.split('\\n')
+	step = 32
+	for i in range(0,len(p),step):
+		os.system('cls')
+		a = i
+		pp = p[a:a+step]
+		for i in pp:
+			print(i)
+		input('\npress Enter to continue ')
+	input('press Enter to continue ')
 
 
 
@@ -829,7 +871,7 @@ while True:
 	main(f,d,wilderness,climate,terrain,season)
 	print('commands    d : go to a specific day    1 : add 1 day                     r : random day     m : morale check')
 	print('            l : new location            s : change location parameters    p : show plants    i : initiative')
-	print('           sd : market forces')
+	print('           sd : market forces          pr : look up proficiency')
 	print('')
 	x = input("enter command: ")
 	if x == "d":
@@ -844,6 +886,8 @@ while True:
 			season = "fall"
 		else:
 			season = "winter"
+	elif x == "pr":
+		profs()
 	elif x == "r":
 		d = random.randint(0,len(f))
 		doy = d%360
