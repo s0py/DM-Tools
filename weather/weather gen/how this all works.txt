@@ -1,0 +1,11 @@
+to generate the weather, the 2weather.py program makes a csv file with all the basics.
+this file only works for one combination of climate and terrain tho, so the "autoweather.py"
+file runs the "2weather.py" program for all combinations.
+
+but there is some extra info that needs to be added for use in the dm_tool.py program.
+the easiest way for me to do this was to use the programming language "R" and the file
+that handles that is also included. it combines info from the files that "autoweather.py"
+will produce with info in the other .csv files in this directory and outputs .csv files
+that the dm_tool.py program can use.
+
+YOU SHOULD NEVER HAVE TO RUN THIS
