@@ -830,16 +830,40 @@ def profs():
 		prof_file = prof_file.readlines()
 	p = prof_file[int(p)-1]
 	p = p.split('\\n')
-	step = 32
+	step = 31
+	b = int(len(p)/step) + 1
+	page = 1
 	for i in range(0,len(p),step):
 		os.system('cls')
+		print('page {} of {}'.format(page,b))
+		print('')
 		a = i
 		pp = p[a:a+step]
 		for i in pp:
-			print(i)
-		input('\npress Enter to continue ')
-	input('press Enter to continue ')
+			print("\t{}".format(i))
+		print('\npage {} of {}'.format(page,b))
+		page += 1
+		input('press Enter to continue ')
+	input('press Enter to return ')
 
+# combat modifiers
+def combat():
+	os.system('cls')
+	print('')
+	print('                          Combat Modifiers')
+	print('┌───────────────────────────────┬──────────────────────────────────┐')
+	print('│ Attacker on high ground :  +1 │     Defender stunned/prone :  +4 │')
+	print('├───────────────────────────────┼──────────────────────────────────┤')
+	print('│      Defender invisible :  -4 │         Defender surprised :  +1 │')
+	print('├───────────────────────────────┼──────────────────────────────────┤')
+	print('│    Defender off-balance :  +2 │   Missile fire, long range :  -5 │')
+	print('├───────────────────────────────┼──────────────────────────────────┤')
+	print('│  Defender sleeping/held :  XX │ Missile fire, medium range :  -2 │')
+	print('└───────────────────────────────┼──────────────────────────────────┤')
+	print(' XX - automatically hits. if    │                Rear attack :  -2 │')
+	print('      not in combat, defender   └──────────────────────────────────┘')
+	print('      is slain automatically.')
+	input('\npress Enter to return ')
 
 
 
@@ -871,7 +895,7 @@ while True:
 	main(f,d,wilderness,climate,terrain,season)
 	print('commands    d : go to a specific day    1 : add 1 day                     r : random day     m : morale check')
 	print('            l : new location            s : change location parameters    p : show plants    i : initiative')
-	print('           sd : market forces          pr : look up proficiency')
+	print('           sd : market forces          pr : look up proficiency           c : combat modifiers')
 	print('')
 	x = input("enter command: ")
 	if x == "d":
@@ -886,6 +910,8 @@ while True:
 			season = "fall"
 		else:
 			season = "winter"
+	elif x == "c":
+		combat()
 	elif x == "pr":
 		profs()
 	elif x == "r":
