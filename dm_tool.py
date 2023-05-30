@@ -4,7 +4,13 @@ import os
 # ask for the file
 os.system("mode con lines=36")
 os.system('cls')
-temp = input("Please enter the file name: ")
+print('Here are the files you can choose from:')
+weather_files = os.listdir('./weather/')
+print('')
+for i in weather_files:
+	if i != "weather gen":
+		print("\t{}".format(i))
+temp = input("\nPlease enter the file name: ")
 # if there is none specified use the default
 if temp == "":
 	file = "weather/arctic_forest_weather_5year.csv"
