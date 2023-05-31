@@ -1,32 +1,90 @@
 import random
 import os
 
+def read_players():
+	pass
+
+def save_players():
+	pass
+
+def read_food():
+	pass
+
+def save_food():
+	pass
+
+def read_config(config_file):
+	with open('./saves/{}.txt'.format(config_file)) as config_file:
+		lines = config_file.readlines()
+		weather_file = lines[0].replace('\n','')
+		climate = lines[1].replace('\n','')
+		terrain = lines[2].replace('\n','')
+		season = lines[3].replace('\n','')
+		day = int(lines[4].replace('\n',''))
+	return([weather_file,climate,terrain,season,day])
+
+def save_config(weather_file, climate, terrain, season, day):
+	# ask for the information
+	save_name = input('Please name your save: ')
+	# write what file is used for weather
+	# write what climate and terrain are
+	# write the date
+	with open('saves/{}_config.txt'.format(save_name), "w") as config_file:
+		config_file.write(weather_file)
+		config_file.write('\n')
+		config_file.write(climate)
+		config_file.write('\n')
+		config_file.write(terrain)
+		config_file.write('\n')
+		config_file.write(season)
+		config_file.write('\n')
+		config_file.write(day)
+
+
 # ask for the file
 os.system("mode con lines=36")
 os.system('cls')
-print('Here are the files you can choose from:')
-weather_files = os.listdir('./weather/')
+
+print('Save Files')
+save_files = os.listdir('./saves/')
 print('')
-i_of_f = 0
-for i in weather_files:
-	i_of_f += 1
-	if i != "weather gen":
-		print("\t{}  {}".format(i_of_f,i))
-		if (i_of_f-1)%10 == 9:
-			print('')
-temp = input("Please enter the file name: ")
-# if there is none specified use the default
-if temp == "":
-	file = "weather/arctic_forest_weather_5year.csv"
-else:
-	# see if it's just a number
-	if temp in ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"]:
-		temp = weather_files[int(temp)-1]
-	# otherwise make sure that there is a .csv
-	if ".csv" in temp:
-		file = 'weather/{}'.format(temp)
+for i in save_files:
+	if '_config' in i:
+		print("\t {}".format(i.replace('.txt',"")))
+save = input('\nplease enter the name of the save\nor press Enter to start a new one: ')
+
+if save == "":
+	print('Here are the weather files you can choose from:')
+	weather_files = os.listdir('./weather/')
+	print('')
+	i_of_f = 0
+	for i in weather_files:
+		i_of_f += 1
+		if i != "weather gen":
+			print("\t{}  {}".format(i_of_f,i))
+			if (i_of_f-1)%10 == 9:
+				print('')
+	temp = input("Please enter the file name: ")
+	# if there is none specified use the default
+	if temp == "":
+		file = "weather/arctic_forest_weather_5year.csv"
 	else:
-		file = 'weather/{}.csv'.format(temp)
+		# see if it's just a number
+		if temp in ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"]:
+			temp = weather_files[int(temp)-1]
+		# otherwise make sure that there is a .csv
+		if ".csv" in temp:
+			file = 'weather/{}'.format(temp)
+		else:
+			file = 'weather/{}.csv'.format(temp)
+
+	climate = 'temperate'
+	terrain = 'forest'
+	season = 'spring'
+	d = 0
+
+else:
+	file,climate,terrain,season,d = read_config(save)
 
 
 with open(file) as f:
@@ -866,11 +924,16 @@ def combat():
 	print('│    Defender off-balance :  +2 │   Missile fire, long range :  -5 │')
 	print('├───────────────────────────────┼──────────────────────────────────┤')
 	print('│  Defender sleeping/held :  XX │ Missile fire, medium range :  -2 │')
+	print('├───────────────────────────────┼──────────────────────────────────┤')
+	print('│       Defender kneeling :  +1 │       Defender laying down :  +4 │')
+	print('├───────────────────────────────┼──────────────────────────────────┤')
+	print('│        Defender sitting :  +2 │    Attacker using off-hand :  -2 │')
 	print('└───────────────────────────────┼──────────────────────────────────┤')
 	print(' XX - automatically hits. if    │                Rear attack :  -2 │')
 	print('      not in combat, defender   └──────────────────────────────────┘')
 	print('      is slain automatically.')
 	input('\npress Enter to return ')
+
 
 
 
@@ -881,18 +944,6 @@ def main(f,d,wilderness,climate,terrain,season):
 		x[17],x[18],x[19],x[20],x[21],\
 		wilderness,climate,terrain,season)
 
-d = 0
-
-
-
-# get the first run of things
-#climate = input('What climate? ')
-#terrain = input('What terrain? ')
-#season = input('What season? ')
-
-climate = 'temperate'
-terrain = 'forest'
-season = 'spring'
 
 # the main loop
 while True:
@@ -900,9 +951,9 @@ while True:
 	wilderness = surroundingwilderness(climate,terrain,season)
 
 	main(f,d,wilderness,climate,terrain,season)
-	print('commands    d : go to a specific day    1 : add 1 day                     r : random day     m : morale check')
-	print('            l : new location            s : change location parameters    p : show plants    i : initiative')
-	print('           sd : market forces          pr : look up proficiency           c : combat modifiers')
+	print('commands    d : go to a specific day    1 : add 1 day                     r : random day       m : morale check')
+	print('            l : new location            s : change location parameters    p : show plants      i : initiative')
+	print('           sd : market forces          pr : look up proficiency           c : combat mods     sa : save')
 	print('')
 	x = input("enter command: ")
 	if x == "d":
@@ -917,6 +968,8 @@ while True:
 			season = "fall"
 		else:
 			season = "winter"
+	elif x == "sa":
+		save_config(file,climate,terrain,season,"100")
 	elif x == "c":
 		combat()
 	elif x == "pr":

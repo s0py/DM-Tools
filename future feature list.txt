@@ -1,0 +1,12 @@
+future feature list
+
+- tracking food items and determinign when they will go bad
+- cover and concealment info
+- add info from fighter's handbook
+- add theif proficiencies
+- add psionic proficiencies
+- add bard proficiencies
+- add paladan proficiencies
+- add barbarian proficiencies
+- add barbarian proficiency updates
+- add ninja proficiencies
