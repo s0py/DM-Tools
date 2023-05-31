@@ -1143,7 +1143,8 @@ while True:
 	# update all the food
 	if prev_day != -1 and d != 0:
 		for i in range(prev_day,d):
-			food_list = update_food(food_list,int(f[d-1][11]))
+			temp = f[i][11]
+			food_list = update_food(food_list,int(temp))
 	prev_day = d
 
 	main(f,d,wilderness,climate,terrain,season,food_list)
