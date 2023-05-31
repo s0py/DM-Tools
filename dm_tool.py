@@ -7,14 +7,25 @@ def read_players():
 def save_players():
 	pass
 
-def read_food():
-	pass
+def read_food(food_file):
+	food_file = './saves/{}_food.txt'.format(food_file)
+	food_list = []
+	with open(food_file) as food_file_lines:
+		for line in food_file_lines.readlines():
+			food_line = line.replace('\n','').replace("'","").split(', ')
+			food_line[1] = int(food_line[1])
+			food_line[2] = int(food_line[2])
+			food_list.append(food_line)
+		#print(food_list)
+		#input('')
+	return(food_list)
 
-def save_food():
-	pass
+def save_food(food_list,save_name):
+	with open('saves/{}_food.txt'.format(save_name),'w') as food_file:
+		food_file.write('\n'.join(str(line).replace('[','').replace(']','') for line in food_list))
 
 def read_config(config_file):
-	with open('./saves/{}.txt'.format(config_file)) as config_file:
+	with open('./saves/{}_config.txt'.format(config_file)) as config_file:
 		lines = config_file.readlines()
 		weather_file = lines[0].replace('\n','')
 		climate = lines[1].replace('\n','')
@@ -23,9 +34,7 @@ def read_config(config_file):
 		day = int(lines[4].replace('\n',''))
 	return([weather_file,climate,terrain,season,day])
 
-def save_config(weather_file, climate, terrain, season, day):
-	# ask for the information
-	save_name = input('Please name your save: ')
+def save_config(weather_file, climate, terrain, season, day,save_name):
 	# write what file is used for weather
 	# write what climate and terrain are
 	# write the date
@@ -38,11 +47,11 @@ def save_config(weather_file, climate, terrain, season, day):
 		config_file.write('\n')
 		config_file.write(season)
 		config_file.write('\n')
-		config_file.write(day)
+		config_file.write(str(day))
 
 
 # ask for the file
-os.system("mode con lines=36")
+os.system("mode con lines=36 cols=150")
 os.system('cls')
 
 print('Save Files')
@@ -50,10 +59,26 @@ save_files = os.listdir('./saves/')
 print('')
 for i in save_files:
 	if '_config' in i:
-		print("\t {}".format(i.replace('.txt',"")))
+		print("\t {}".format(i.replace('_config.txt',"")))
 save = input('\nplease enter the name of the save\nor press Enter to start a new one: ')
 
 if save == "":
+	food_list = [
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""],
+		["",1,0,""]
+		]
+	# each element of the food list is a list itself containing:
+	# food name, food type, days old, condition
 	print('Here are the weather files you can choose from:')
 	weather_files = os.listdir('./weather/')
 	print('')
@@ -85,6 +110,7 @@ if save == "":
 
 else:
 	file,climate,terrain,season,d = read_config(save)
+	food_list = read_food(save)
 
 
 with open(file) as f:
@@ -94,10 +120,14 @@ for i in range(0,len(f)):
 	f[i] = f[i].split(",")
 f.pop(0)
 
+# def display(rain,wind_max,day,weekday,month,monthday,\
+# 	 hi,lo,humiditymod,wind,winddir,eff_hi,eff_lo,spec,\
+# 	 wind_low,wind_missile,wind_melee,wind_move,viz_day,\
+# 	 viz_twi,viz_moon,viz_dark,wilderness,climate,terrain,season):
 def display(rain,wind_max,day,weekday,month,monthday,\
 	hi,lo,humiditymod,wind,winddir,eff_hi,eff_lo,spec,\
 	wind_low,wind_missile,wind_melee,wind_move,viz_day,\
-	viz_twi,viz_moon,viz_dark,wilderness,climate,terrain,season):
+	viz_twi,viz_moon,viz_dark,wilderness,climate,terrain,season,food_list):
 	
 	dawn, dusk, dl = daylight(day,climate)
 
@@ -183,27 +213,103 @@ def display(rain,wind_max,day,weekday,month,monthday,\
 	for i in range(0,4-len(dl)):
 		dl = " " + dl
 
+	# deal with the stupid way we are displaying the food
+	fl1_n =  str(food_list[0][0])
+	fl1_s =  str(food_list[0][-1])
+	fl2_n =  str(food_list[1][0])
+	fl2_s =  str(food_list[1][-1])
+	fl3_n =  str(food_list[2][0])
+	fl3_s =  str(food_list[2][-1])
+	fl4_n =  str(food_list[3][0])
+	fl4_s =  str(food_list[3][-1])
+	fl5_n =  str(food_list[4][0])
+	fl5_s =  str(food_list[4][-1])
+	fl6_n =  str(food_list[5][0])
+	fl6_s =  str(food_list[5][-1])
+	fl7_n =  str(food_list[6][0])
+	fl7_s =  str(food_list[6][-1])
+	fl8_n =  str(food_list[7][0])
+	fl8_s =  str(food_list[7][-1])
+	fl9_n =  str(food_list[8][0])
+	fl9_s =  str(food_list[8][-1])
+	fl10_n = str(food_list[9][0])
+	fl10_s = str(food_list[9][-1])
+	fl11_n = str(food_list[10][0])
+	fl11_s = str(food_list[10][-1])
+	fl12_n = str(food_list[11][0])
+	fl12_s = str(food_list[11][-1])
+
+	for i in range(0,16-len(fl1_n)):
+		fl1_n += " "
+	for i in range(0,3-len(fl1_s)):
+		fl1_s += " "
+	for i in range(0,16-len(fl2_n)):
+		fl2_n += " "
+	for i in range(0,3-len(fl2_s)):
+		fl2_s += " "
+	for i in range(0,16-len(fl3_n)):
+		fl3_n += " "
+	for i in range(0,3-len(fl3_s)):
+		fl3_s += " "
+	for i in range(0,16-len(fl4_n)):
+		fl4_n += " "
+	for i in range(0,3-len(fl4_s)):
+		fl4_s += " "
+	for i in range(0,16-len(fl5_n)):
+		fl5_n += " "
+	for i in range(0,3-len(fl5_s)):
+		fl5_s += " "
+	for i in range(0,16-len(fl6_n)):
+		fl6_n += " "
+	for i in range(0,3-len(fl6_s)):
+		fl6_s += " "
+	for i in range(0,16-len(fl7_n)):
+		fl7_n += " "
+	for i in range(0,3-len(fl7_s)):
+		fl7_s += " "
+	for i in range(0,16-len(fl8_n)):
+		fl8_n += " "
+	for i in range(0,3-len(fl8_s)):
+		fl8_s += " "
+	for i in range(0,16-len(fl9_n)):
+		fl9_n += " "
+	for i in range(0,3-len(fl9_s)):
+		fl9_s += " "
+	for i in range(0,16-len(fl10_n)):
+		fl10_n += " "
+	for i in range(0,3-len(fl10_s)):
+		fl10_s += " "
+	for i in range(0,16-len(fl11_n)):
+		fl11_n += " "
+	for i in range(0,3-len(fl11_s)):
+		fl11_s += " "
+	for i in range(0,16-len(fl12_n)):
+		fl12_n += " "
+	for i in range(0,3-len(fl12_s)):
+		fl12_s += " "
+
+
 	os.system('cls')
 	print('═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════')
 	print('this program is reading from : {}'.format(file))
 	print('')
 	print('                                             Current Conditions')
-	print('┌───────────────────────────┬───────────┐ ┌──────────────────────┐ ┌─────────────────────────────────┐')	# 1
-	print('│       weather   hum: {} │   hi   lo │ │         wind         │ │     surrounding wilderness      │'.format(humiditymod))	# 2
-	print('├───────────────────────────┼───────────┤ ├──────────────────────┤ ├─────────────────────────────────┤')	# 3
-	print('│ {} │ {} {} │ │          {} │ │ hunt                            │'.format(rain,eff_hi,eff_lo,wind_max))	# 4
-	print('│ {} │ {} {} │ │ {} │ │ {} │'.format(spec,hi,lo,winddir,wilderness[0][1]))	# 5
-	print('└───────────────────────────┴───────────┘ │                      │ │                                 │')	# 6
-	print('            ┌───────────────────────────┐ │ missiles {} │ │ fish                            │'.format(wind_missile))	# 7
-	print(' {} │ {} {}  (d {})│ │    melee {} │ │ {} │'.format(climate,monthday,month,day,wind_melee,wilderness[1][0]))	# 8
-	print(' {} ├───────────────────────────┤ │     move {} │ │ {} │'.format(terrain,wind_move,wilderness[1][1]))	# 9
-	print(' {} │            day {} │ └──────────────────────┘ │ {} │'.format(season,viz_day,wilderness[1][2]))	# 10
-	print('            │       twilight {} │ ┌──────────────────────┐ │ {} │'.format(viz_twi,wilderness[1][3]))		# 11
-	print(' dawn {} │      moonlight {} │ │     morale checks    │ │                                 │'.format(dawn,viz_moon))		# 12
-	print(' dusk {} │           dark {} │ ├──────────────────────┤ │ forage                          │'.format(dusk,viz_dark))		# 13
-	print(' ({} h)   └───────────────────────────┘ │ surprised            │ │      found : {} │'.format(dl,wilderness[2][1]))		# 14
-	print('           ┌────────────────────────────┐ │ superior force       │ │ prof found : {} │'.format(wilderness[2][2]))
-	print('           │      water min (pints)     │ │ ally slain by magic  │ │    problem : {} │'.format(wilderness[2][3]))
+	print('┌───────────────────────────┬───────────┐ ┌──────────────────────┐ ┌─────────────────────────────────┐ ┌─────────────────────────┐')	# 1
+	print('│       weather   hum: {} │   hi   lo │ │         wind         │ │     surrounding wilderness      │ │          food           │'.format(humiditymod))	# 2
+	print('├───────────────────────────┼───────────┤ ├──────────────────────┤ ├─────────────────────────────────┤ ├─────────────────────────┤')	# 3
+	print('│ {} │ {} {} │ │          {} │ │ hunt                            │ │  1 {} {} │'.format(rain,eff_hi,eff_lo,wind_max,fl1_s,fl1_n))	# 4
+	print('│ {} │ {} {} │ │ {} │ │ {} │ │  2 {} {} │'.format(spec,hi,lo,winddir,wilderness[0][1],fl2_s,fl2_n))	# 5
+	print('└───────────────────────────┴───────────┘ │                      │ │                                 │ │  3 {} {} │'.format(fl3_s,fl3_n))	# 6
+	print('            ┌───────────────────────────┐ │ missiles {} │ │ fish                            │ │  4 {} {} │'.format(wind_missile,fl4_s,fl4_n))	# 7
+	print(' {} │ {} {}  (d {})│ │    melee {} │ │ {} │ │  5 {} {} │'.format(climate,monthday,month,day,wind_melee,wilderness[1][0],fl5_s,fl5_n))	# 8
+	print(' {} ├───────────────────────────┤ │     move {} │ │ {} │ │  6 {} {} │'.format(terrain,wind_move,wilderness[1][1],fl6_s,fl6_n))	# 9
+	print(' {} │            day {} │ └──────────────────────┘ │ {} │ │  7 {} {} │'.format(season,viz_day,wilderness[1][2],fl7_s,fl7_n))	# 10
+	print('            │       twilight {} │ ┌──────────────────────┐ │ {} │ │  8 {} {} │'.format(viz_twi,wilderness[1][3],fl8_s,fl8_n))		# 11
+	print(' dawn {} │      moonlight {} │ │     morale checks    │ │                                 │ │  9 {} {} │'.format(dawn,viz_moon,fl9_s,fl9_n))		# 12
+	print(' dusk {} │           dark {} │ ├──────────────────────┤ │ forage                          │ │ 10 {} {} │'.format(dusk,viz_dark,fl10_s,fl10_n))		# 13
+	print(' ({} h)   └───────────────────────────┘ │ surprised            │ │      found : {} │ │ 11 {} {} │'.format(dl,wilderness[2][1],fl11_s,fl11_n))		# 14
+	print('           ┌────────────────────────────┐ │ superior force       │ │ prof found : {} │ │ 12 {} {} │'.format(wilderness[2][2],fl12_s,fl12_n))
+	print('           │      water min (pints)     │ │ ally slain by magic  │ │    problem : {} │ └─────────────────────────┘'.format(wilderness[2][3]))
 	print('           ├────────────────────────────┤ │ 1/4 group fallen     │ │                                 │')
 	print('           │          <50  <70  <90   + │ │ 1/2 group fallen     │ │ water : {}, {} │'.format(wilderness[3][0],wilderness[3][1]))
 	print('           │ inactive   5    6    7   8 │ │ " " " & ally falls   │ │                                 │')
@@ -215,6 +321,78 @@ def display(rain,wind_max,day,weekday,month,monthday,\
 	print('                                                                   │ fuel : {} │'.format(wilderness[6]))
 	print('                                                                   └─────────────────────────────────┘')
 	print('')
+
+# tracking food
+def add_food(food_list):
+	task = input("add or remove a food?: ")
+	if task == "add":
+		index = int(input('what food slot?: '))
+		food_name = input("food item: ")
+		print('food types')
+		print('1. green plant/grains')
+		print('2. fruit or vegetable')
+		print('3. cooked meat')
+		print('4. raw meat')
+		food_type = int(input("what type of food? (enter number): "))
+		food_age = input("how many days old?: ")
+		if food_age == "":
+			food_age = 0
+		food_age = int(food_age)
+		food_list[index-1] = [food_name,food_type,food_age,""]
+	if task == "remove":
+		food = int(input('what food item? (enter number): '))
+		if food > 12:
+			food = 12
+		if food < 1:
+			food = 1
+		food_list[food-1] = ['',0,0,'']
+
+	return(food_list)
+
+# wilderness[11] is the eff_hi of the day
+def update_food(food_list,temp):
+	# how many days before a check is needed
+	checkmap = [
+	[0,6,4,2,1], # green plants
+	[0,5,3,2,1], # fruits and vegetables
+	[0,3,2,1,1], # cooked meat
+	[0,2,1,1,1]  # raw meat
+	]
+	# percent chance of spoilage
+	spoilmap = [
+	[0,20,30,40,50],
+	[0,30,40,50,60],
+	[0,20,50,60,80],
+	[0,50,70,80,90]
+	]
+	# turn the temp into an index
+	if temp < 31:
+		temp = 0
+	elif temp in range(31,51):
+		temp = 1
+	elif temp in range(51,71):
+		temp = 2
+	elif temp in range(71,91):
+		temp = 3
+	elif temp > 90:
+		temp = 4
+	# one spoil check and the food is tainted
+	# two and the food is obviously entirely spoiled
+	for item in food_list:
+		item[2] += 1
+		# get the type and age
+		food_type = item[1]-1
+		food_age = item[2]
+		# check to see if it's past the check time
+		if food_age >= checkmap[food_type][temp]:
+			# check to see if you advance the spoilage
+			if random.randint(0,99) < spoilmap[food_type][temp]:
+				print('rolled less than spoil chance')
+				if item[3] == "" and item[0] != "":
+					item[3] = "(T)"
+				elif item[3] == "(T)":
+					item[3] = "(S)"
+	return(food_list)
 
 
 # hunting
@@ -263,7 +441,7 @@ def hunting(climate, terrain, season):
 			b = random.randint(1,3)
 			c = random.randint(6,8) * 10
 		
-		huntdist = "{} size, {} creatures at {} yards".format(a[x-1],b,c)
+		huntdist = "{} size, {} creatures @ {} yards".format(a[x-1],b,c)
 
 	return([encountered_game,huntdist])
 
@@ -937,54 +1115,62 @@ def combat():
 
 
 
-def main(f,d,wilderness,climate,terrain,season):
+def main(f,d,wilderness,climate,terrain,season,food_list):
 	x = f[d]
 	display(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],\
 		x[9],x[10],x[11],x[12],x[13],x[14],x[15],x[16],\
 		x[17],x[18],x[19],x[20],x[21],\
-		wilderness,climate,terrain,season)
+		wilderness,climate,terrain,season,food_list)
 
+def update_season(d):
+	doy = d%360
+	if doy < 90:
+		season = "spring"
+	elif doy < 180:
+		season = "summer"
+	elif doy < 270:
+		season = "fall"
+	else:
+		season = "winter"
+	return(season)
 
+prev_day = -1
 # the main loop
 while True:
 
+	# get the wilderness info
 	wilderness = surroundingwilderness(climate,terrain,season)
+	# update all the food
+	if prev_day != -1 and d != 0:
+		for i in range(prev_day,d):
+			food_list = update_food(food_list,int(f[d-1][11]))
+	prev_day = d
 
-	main(f,d,wilderness,climate,terrain,season)
-	print('commands    d : go to a specific day    1 : add 1 day                     r : random day       m : morale check')
-	print('            l : new location            s : change location parameters    p : show plants      i : initiative')
-	print('           sd : market forces          pr : look up proficiency           c : combat mods     sa : save')
+	main(f,d,wilderness,climate,terrain,season,food_list)
+	print('commands    d : go to a specific day    1 : add 1 day                     f : add/remove food    m : morale check')
+	print('            l : new location            s : change location parameters    p : show plants        i : initiative')
+	print('           sd : market forces          pr : look up proficiency           c : combat mods       sa : save')
 	print('')
 	x = input("enter command: ")
 	if x == "d":
 		x = input("what day: ")
+		prev_day = d
 		d = int(x)
-		doy = d%360
-		if doy < 90:
-			season = "spring"
-		elif doy < 180:
-			season = "summer"
-		elif doy < 270:
-			season = "fall"
-		else:
-			season = "winter"
+		season = update_season(d)
+	elif x == "x":
+		print(food_list)
+		input('')
+	elif x == "f":
+		food_list = add_food(food_list)
 	elif x == "sa":
-		save_config(file,climate,terrain,season,"100")
+		# ask for the information
+		save_name = input('Please name your save: ')
+		save_config(file,climate,terrain,season,d,save_name)
+		save_food(food_list,save_name)
 	elif x == "c":
 		combat()
 	elif x == "pr":
 		profs()
-	elif x == "r":
-		d = random.randint(0,len(f))
-		doy = d%360
-		if doy < 90:
-			season = "spring"
-		elif doy < 180:
-			season = "summer"
-		elif doy < 270:
-			season = "fall"
-		else:
-			season = "winter"
 	elif x == "l":
 		wilderness = surroundingwilderness(climate, terrain, season)
 	elif x == "s":
@@ -999,27 +1185,13 @@ while True:
 	elif x == "m":
 		morale()
 	elif x == "":
+		prev_day = d
 		d += 1
-		doy = d%360
-		if doy < 90:
-			season = "spring"
-		elif doy < 180:
-			season = "summer"
-		elif doy < 270:
-			season = "fall"
-		else:
-			season = "winter"
+		season = update_season(d)
 	elif x == "sd":
 		market()
 	else:
+		prev_day = d
 		d += int(x)
-		doy = d%360
-		if doy < 90:
-			season = "spring"
-		elif doy < 180:
-			season = "summer"
-		elif doy < 270:
-			season = "fall"
-		else:
-			season = "winter"
+		season = update_season(d)
 	print('\n\n')
