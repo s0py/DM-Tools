@@ -10,3 +10,4 @@ future feature list
 - add barbarian proficiencies
 - add barbarian proficiency updates
 - add ninja proficiencies
+- add poison information
