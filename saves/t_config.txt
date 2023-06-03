@@ -1,5 +1,5 @@
 weather/arctic_forest_weather_5year.csv
 temperate
 forest
-spring
-87
+summer
+484
