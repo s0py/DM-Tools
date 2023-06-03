@@ -39,7 +39,7 @@ def read_config(config_file):
 		terrain = lines[2].replace('\n','')
 		season = lines[3].replace('\n','')
 		day = int(lines[4].replace('\n',''))
-	return([weather_file,climate,terrain,season,day])
+	return((weather_file,climate,terrain,season,day))
 
 def save_config(weather_file, climate, terrain, season, day,save_name):
 	# write what file is used for weather
@@ -110,7 +110,7 @@ if save == "":
 		file = "weather/arctic_forest_weather_5year.csv"
 	else:
 		# see if it's just a number
-		if temp in ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"]:
+		if temp in ("0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"):
 			temp = weather_files[int(temp)-1]
 		# otherwise make sure that there is a .csv
 		if ".csv" in temp:
@@ -165,19 +165,19 @@ def add_food(food_list):
 # wilderness[11] is the eff_hi of the day
 def update_food(food_list,temp):
 	# how many days before a check is needed
-	checkmap = [
-	[0,6,4,2,1], # green plants
-	[0,5,3,2,1], # fruits and vegetables
-	[0,3,2,1,1], # cooked meat
-	[0,2,1,1,1]  # raw meat
-	]
+	checkmap = (
+	(0,6,4,2,1), # green plants
+	(0,5,3,2,1), # fruits and vegetables
+	(0,3,2,1,1), # cooked meat
+	(0,2,1,1,1)  # raw meat
+	)
 	# percent chance of spoilage
-	spoilmap = [
-	[0,20,30,40,50],
-	[0,30,40,50,60],
-	[0,20,50,60,80],
-	[0,50,70,80,90]
-	]
+	spoilmap = (
+	(0,20,30,40,50),
+	(0,30,40,50,60),
+	(0,20,50,60,80),
+	(0,50,70,80,90)
+	)
 	# turn the temp into an index
 	if temp < 31:
 		temp = 0
@@ -459,11 +459,11 @@ def treasure_gen():
 		gn4 = ""
 		gn5 = ""
 		gn6 = ""
-		ornamental = ["Azurite: Opaque, mottled deep blue", "Banded Agate: Brown, blue, red, and white stripes", "Blue Quartz: Transparent pale blue", "Eye Agate: Gray, white, brown, blue, and green circles", "Hematite: Gray-black", "Lapis Lazuli: Light or dark blue with yellow flecks", "Malachite: Striated light and dark green", "Moss Agate: Pink, yellow-white with gray-green moss-like markings", "Obsidian: Jet black", "Rhodochrosite: Light pink", "Tiger Eye Agate: Rich golden brown with dark striping", "Turquoise: Aqua with darker mottling"]
-		semiprecious = ["Bloodstone: Dark gray with red flecks","Carnelian: Orange to red-brown","Chalcedony: White","Chrysoprase: Translucent apple to emerald green","Citrine: Pale yellow brown","Jasper: Blue, black to brown","Moonstone: White with pale blue hue","Onyx: Black, white, or bands of both","Rock Crystal: Clear, transparent","Sardonyx: Bands of red and white","Smoky Quartz: light gray, yellow, brown or blue","Star Rose Quartz: Smoky rose with white star center","Zircon: Clear pale aqua"]
-		fnacy = ["Amber: Transparent golden", "Alexan"]
-		fancy_precious = ["Amber: Transparent golden","Alexandrite: Dark green","Amethyst: Purple crystal","Aquamarine: pale blue green","Chrysoberyl: green or yellow green","Coral: Pink to crimson","Garnet: Deep red to violet crystal","Jade: Light to dark green or white","Jet: Deep black","Pearl: Pure white, rose, to black","Peridot: Olive green","Spinel: Red, red-brown, green, or deep blue","Topaz: Golden yellow","Tourmaline: Pale green, blue, brown, or red"]
-		gems_jewels = ["Black Opal: Dark green with black mottling and golden flecks","Black Sapphire: Rich black with highlights","Diamond: Clear blue-white, rich blue, yellow, or pink","Emerald: Brilliant green","Fire Opal: Fiery red","Jacinth: Fiery orange","Opal: Pale blue with green and gold mottling","Oriental Amethyst: Deep purple","Oriental Emerald: Bright green","Oriental Topaz: Fiery yellow","Ruby: Clear to deep crimson red","Sapphire: Clear to medium blue","Star Ruby: Translucent ruby with white star highlights","Star Sapphire: Translucent blue with white star highlights"]
+		ornamental = ("Azurite: Opaque, mottled deep blue", "Banded Agate: Brown, blue, red, and white stripes", "Blue Quartz: Transparent pale blue", "Eye Agate: Gray, white, brown, blue, and green circles", "Hematite: Gray-black", "Lapis Lazuli: Light or dark blue with yellow flecks", "Malachite: Striated light and dark green", "Moss Agate: Pink, yellow-white with gray-green moss-like markings", "Obsidian: Jet black", "Rhodochrosite: Light pink", "Tiger Eye Agate: Rich golden brown with dark striping", "Turquoise: Aqua with darker mottling")
+		semiprecious = ("Bloodstone: Dark gray with red flecks","Carnelian: Orange to red-brown","Chalcedony: White","Chrysoprase: Translucent apple to emerald green","Citrine: Pale yellow brown","Jasper: Blue, black to brown","Moonstone: White with pale blue hue","Onyx: Black, white, or bands of both","Rock Crystal: Clear, transparent","Sardonyx: Bands of red and white","Smoky Quartz: light gray, yellow, brown or blue","Star Rose Quartz: Smoky rose with white star center","Zircon: Clear pale aqua")
+		fnacy = ("Amber: Transparent golden", "Alexan")
+		fancy_precious = ("Amber: Transparent golden","Alexandrite: Dark green","Amethyst: Purple crystal","Aquamarine: pale blue green","Chrysoberyl: green or yellow green","Coral: Pink to crimson","Garnet: Deep red to violet crystal","Jade: Light to dark green or white","Jet: Deep black","Pearl: Pure white, rose, to black","Peridot: Olive green","Spinel: Red, red-brown, green, or deep blue","Topaz: Golden yellow","Tourmaline: Pale green, blue, brown, or red")
+		gems_jewels = ("Black Opal: Dark green with black mottling and golden flecks","Black Sapphire: Rich black with highlights","Diamond: Clear blue-white, rich blue, yellow, or pink","Emerald: Brilliant green","Fire Opal: Fiery red","Jacinth: Fiery orange","Opal: Pale blue with green and gold mottling","Oriental Amethyst: Deep purple","Oriental Emerald: Bright green","Oriental Topaz: Fiery yellow","Ruby: Clear to deep crimson red","Sapphire: Clear to medium blue","Star Ruby: Translucent ruby with white star highlights","Star Sapphire: Translucent blue with white star highlights")
 	
 		# pick one of each category
 		gn1 = random.choice(ornamental)
@@ -783,7 +783,7 @@ def treasure_gen():
 		if aroll == 100:
 			value = d('2d6',1000,'gp')
 	
-		objetsdart = ["A beautiful elven vase that is slightly cracked. The painting around the outside of the vase depicts an elven god planting the world’s very first tree.", "Artwork of a battle showing the local lords fighting off an attack, painted by a long dead artist. The painting is set in a lovely gold leaf frame.", "A child’s painting framed beautifully. The art itself is fairly lacking but the frame is worth a decent amount, even more to someone who appreciates the juxtaposition of incredibly classy and messy.", "A jade tea set for two, stored on a lovely wooden tray.", "A large stone that (magically/naturally) glows. It is crafted into a statuette of a celestial being. The stone itself is worth little but the craftsmanship is very fine.", "A baby’s blanket made of the finest cloth. It is kept in a mothballed container for years. It smells faintly of mint, as if someone meant to store it for a very long time.", "A model of the solar system you reside in. It is made entirely out of brass with some of the labels faded over time. It could possibly be sold to a place of knowledge for a slightly higher price.", "A finely made flask and flask sheath. The flask is slightly dirty on the inside but with some running water and time, it will reveal a noble’s crest on the side immediately, skyrocketing the value.", "A deed to a very small portion of land that now resides in the very middle of a noble’s house. The city will buy it off of you for a good price.", "A golden likeness of the hand of a legendary female warlord, sitting atop a small pedestal bearing her name (Alanna the Fearless). The hand is able to hold a sword that is made to her specific specifications, all others simply fall out.", "A jade carving of a dog etched with its eulogy.", "Two delicate links of silver chain around a demon statuette of rare wood. Of particular interest to that demon’s cult.", "Seven beautifully etched bells in descending sizes, each made of silver and each with its own tone. Ringing one makes you slightly sleepy, others fill you with talkative urge or a powerful sense of unease.", "A handful of jasper puzzle pieces speckled with flecks of semiprecious stone (citrine, amethyst, garnet, etc.) that assemble themselves into the 2-D likeness of the last animal you pointed at.", "A painting of middling skill drawn by a local lord who has recently passed. “He was a bastard when he was alive. but an endearing one now he’s dead!”", "A painting of exquisite skill drawn by a discredited masterandom. “Hm… probably a fake. I’ll give you 100 gold, consider yourself lucky.”", "A palm-sized bronze automaton of a goose that lays a copper egg. Its eyes are rubies. Feed it copper coins and it produces more copper eggs.", "A small sapphire hairpin carved into the shape of an ocean wave.", "A volume of poetry by the late great bard _______.", "A volume of painstakingly illuminated holy scripture – bookmarked to some of the racier passages.", "A beautifully crafted but unbalanced and obviously impractical weapon. Is it a long-handled sword? A short-handled spear with a long blade? A throwing javelin with a 10-foot range?", "A silver and brass mirror with lewd designs hidden around the frame.", "The gaudy holy symbol of a cult to the defunct goddess of wealth.", "A small notebook with the random musings of ‘The Authorandom.’ Many of them pertain about the nature of the world, time, space and the future. Oddly no one has noticed that all the predictions in said notebook have come true.", "A crudely made painting of a king smiling. The painting itself is nothing special. What is however special is the painter but being one of his worse works it gets a rather low price.", "The (nonmagical) axe of Gunthar the Brave, a hero that is very well known and celebrated in his hometown, but not very well known elsewhere.", "A fancy belt buckle (broken beyond repair) from a legendary wizard hero, engraved with his initials.", "A set of candlesticks that on casual glance look extremely expensive which, upon very close examination, turn out to be made of brass instead of gold and with glass instead of gemstones.", "An exquisite scrimshaw design of dueling dragons made from a harpy claw.", "A chunk of metal that, when inspected, is just 100 gp melted and welded togetherandom.", "A clay pot full of a rare and valuable spice.", "A ridiculously unusable gold-plated fantasy sword.", "A canvas swatch full of lines and streaks of colors, all of which methods of color reproduction are lost to time.", "A round table with engraved magic circle and runes that casts a random Prestidigitation effect every day on a fixed lantern in the middle of the table.", "A blue-blade sword within a black leather sheath trimmed with silver leaves. It can be pulled out, but not drawn all the way out.", "A 2-foot golden statue of the deity Waukeen. Waukeen is seated on a chair made of coins.", "The beautifully carved silver lance tip of Sir Thais. It had tipped his ceremonial lance, which was all he had when the [insert current npc group the PCs just fought] brazenly ambushed the king’s parade a few months ago. The tip broke off after being plunged into the shoulder of [a bad guy] and was recovered by [bad guy minions]. Sadly, being ceremonial, the designs are intricate but not really effective for a lance tip, nearly blunt.", "A silver ring with a small piece of jet set in it.", "Boots that magically stay warm and dry, no matter what they’ve been through.", "A filigree gold goblet once owned by a prince.", "An amphora of ancient Fey wine (still good, and very tasty).", "A crown of wyvern fangs set in silverandom.", "A white cape with red embroidery. As you spill blood on the cape, the embroidery grows.", "A silver lined demon skull drinking cup.", "A gold brooch inlaid with jet and garnet.", "Huge ornately carved mahogany doors. Very heavy.", "A gilded and illuminated manuscript.", "A small box inlaid with mother of pearl.", "A matching pair of platinum rings. Each with a large pearl inset. They are worth 50gp each; or 100 gp for the set.", "The keystone of the entrance arch from a legendary temple destroyed in an ancient warandom. (50lb) – priceless to the right collectorandom.", "A 12x12ft, intricately patterned, thick, silk carpet. (200lb)", "An elven viol decorated with silver vines.", "A black onyx scepter with a head of a crow carved in the handle.", "A tapestry depicting the rise and fall of a recently conquered nearby city-state.", "A ceramic jug with glyphs of people teaching the spell ‘create food and water’. Can be used by wizards to copy into spell book.", "A see-through glass sword. The blade is made out of a clear blue glass while the handle is tinted blue.", "Ghostly and spectral remains that have been encased in a Crystal Ball. The ball glows faintly and has a swirling mist effect inside.", "A sheathe for a short sword long since forgotten. It is made with purple velvet wrapped owlbear leather, capped at the end by electrum. The inside has been smoothed considerably and lined with gelatinous cube remains. The effect of this is realized when drawing the sword, the sheathe generates zero sound whatsoeverandom. There is a carved wooden replica of the sword inside the sheathe, and all are contained within a see-through glass case wherein the sheathe lays horizontally.", "A headframe for a bed made with black ash logs. There are carved pictures of ravens decorating the headboard, and gold has been pressed into the carvings.", "A small gem encrusted crown, too small for most races, the crown is unique in that it has horsehair attached, allowing the crown to be worn as a wig.", "Iron ball and chain, there are carefully chiseled etchings in the chain and around the ball in dwarvish. If read, the etchings reveal a song about a criminal held in confinement for killing a noble, but her jailhouse was besieged by bandits for a yearandom. After the first verse, the faint chiseled etchings become deeper and clearer, telling of the dwarf’s temporary release and subsequent victory in combat of the besiegers alongside her jailers. The third and final verse is carved faintly and carefully again, detailing the dwarf continuing her life sentence until her death.", "An ivory tusk the length of an arm but carved with scenes from a battle long ago.", "A polished brass and copper clockwork toy of a small cottage, a farmer and their animals that moves when wound. The farmer chases a toy chicken with an axe.", "A scrimshaw pipe. When puffed on small skeletal animal smoke shapes rise out.", "A white porcelain chamber pot, the much-maligned last work of a great artist who went mad. The pot has the signature of the artist scrawled on it in a shaky hand.", "A painting that was started but not finished that depicts a beautiful landscape. It was started by a famous painter but unfortunately, he died halfway through finishing it. Parts of it are still sketched while others are fully painted.", "A tiny sundial made from a single piece of platinum.", "This ornate oak chair is both artsy AND functional. Sculpted by talented elven Craftsman as a wealthy dining set but have been split up due to warandom. Each chair depicts a different scene in a major war that happened thousands of years ago.", "A small, ornate hand-mirror, with decorative trim and a quote running along the edges that reads ‘Beauty is Diligence in Physical Form’.", "a painting with a mage shouting spells, it is clearly readable out of his mouth, but the letters become denser and denser until it’s only black paint.", "A portrait that makes a 3d bust illusion of a designated person. Requires a simple ritual to ‘take the picture’.", "A mirror that makes you look more attractive via illusion magic.", "A vase made from beautiful stone, carved with celestial figures around it, some marble inlays", "A silver circlet with a glowing stone in it, it can be used to cast light once per day", "An abstract art piece, not of any notable artist, but painted with specks of stones with permanent and colorful illumination.", "An ornate mantle clock that rings the hour with twelve separate melodies.", "A boldly colored quartz the size of a pigeon’s egg, etched and painted in such a way that when it is placed to one’s eye in the light, they see a clever but naughty image of a beautiful person in the nude.", "A wood bound codex filled illuminated with several hundred pages of highly colorful and anatomically difficult descriptions of sexual positions. The codex is sealed with a small brass chain. The text of the manuscript is in a language that is not common.", "A disk of clay with extremely fine etchings of semi-concentric lines that seem to spiral outwards from the center in tight, semi random wiggly spirals. It has been broken into three shards.", "A hat-stand made with ornate knobs of polished brass on the ends of the hooks. The knobs are animal heads in fine detail.", "A desktop ornament made of pink clear glass in the shape of a pig with a bright red glass apple in its mouth. When the pig is rubbed, it makes a magical oink noise.", "An ornate, decorative inkpot and penknife made of rare animal horn.", "A wire basket handled rapier of ornate design, with a fake ruby made of glass mounted in the pommel. The rapier is mounted to be a trophy on a wall. A small plaque reads, ‘Wrath’.", "A large globe showing the known world and a nested set of platonic solids, all made of brass. The entire contraption is over a meter across.", "A palm sized gelatinous cube containing a finely crafted model ship. The cube has been permanently suspended in animation with magic and is non-threatening.", "A painting of a flail snail enhanced by magic to project faint rainbow light from the shell of the flail snail.", "a handcrafted dreamcatcher adorned with werewolf teeth", "The mask of a cloud giant. The mask is pearl white and has light pink stripes.", "A sentient, immobile, carved basalt statue of a jellyfish, summoned to godhood by a cult of Koa-Toa", "Silver Body chains, worn by a high priestess Yuan-Ti.", "A mind flayers brain kept inside of a glass containerandom.", "A perfectly preserved molt of a Yuan-Ti Abomination. The molt is displayed on a large wooden platform.", "A necklace with a large pearl eye, around the eye are ten smaller pearl eyes branching off of the central eye. The necklace is gold and fashioned to depict a beholderandom.", "A small wood totem carved to resemble a werewolf, stolen from a cult of Malarandom.", "A clock in the image of an owlbear’s face. It is of masterwork gnomish quality. Every hour the owlbear opens its mouth and a -hoot hoot- sound emanates from the clock. At nighttime the eyes of the owlbear glow blood red.", "A gnomish tinkered hummingbird that fly’s in place for eternity.", "A palm sized jade turtle. While visibly impressive, most appraisers know it is of sub-par craftsmanship.", "A glass display with the first 100 gold coins minted by a nearby dwarven civilization.", "A display of a stone giants stone club. far too heavy to wield by medium sized creatures.", "A grey ooze that has been polymorphed into a throw rug. The ooze is unable to move across the floor on its own, however is constantly moving ‘within’ itself, giving the appearance of a swirling void.", "A palm sized carved stone replica of the Tomb of Horrors.", "A single Coatl feather, on a palm leaf.", "A candle made of red wax, in the image of a fire salamander", "A candle holder fashioned to resemble a fire mephit holding the candle. The candle holder is made of silverandom.", "The crown of a lizard king. The crown is made of gold and has images of lizardfolk fighting various fey creatures for control of a swamp.", "A perfectly preserved bone skull of a Sahuagin, on a corral wall mount", "The wrappings of a mummy inside a locked trunk.", "A small living carnivorous plant, inside of a notably larger iron cage.", "A carved golden sun, meant to mounted on a wall", "A stone tiled gameboard. the gameboard has stone figurines of adventurers fighting goblins in a dungeon.", "A painting of a ship sailing away from Waterdeep bay.", "A carved tusk of an unknown monster, depicting druids in the middle of a ritual", "An ornate, smooth orb of hardened tree sap (mixed with lavender dye.) It has the appearance of a round translucent ball (the size of a tennis ball in real life) with a dark purple hue and is often mistaken for an old family heirloom. Perhaps an Eboron spell wright believes it is her great grandmother’s spell casting focus, passed down for generations, or is a rather loud-mouthed, malicious constable found in his office every morning adoring his magnificent paper weight with an unusual amount of quiet glee?", "A singular wooden box, with 1-year worth of every spice in the world.", "A non-magical stone ‘official’ seal carved of three birds in flight with a blank spot where the buyer’s official crest can be added.", "Six ornately decorated candles with religious symbolism, and tapers (for lighting), in a small, smoked boxwood case of fine craftsmanship, with space for a seventh candle.", "A finely tanned, soft leather pouch filled with thirty-six small, polished hematite tiles about 2 cm across, inscribed with non-magical glyphs on both sides. Some of the tiles have different glyphs on opposing sides. The pouch has a leather drawstring.", "A birch and mahogany game-board approximately 30 centimeters across. The squares of the board are arrayed in a 9×9 pattern. A small set of two matching birch tables only 10 centimeters high accompany the board.", "A brass and glass hand-mirror with an intricate wirework for the handle. The wirework is of a bird in a cage.", "A polished brass telescoping spyglass, compass, octant, and slide rule set with precisely engraved markings and extreme precision. It comes in a velvet lined wooden case that has been treated with beeswax.", "A small chest for storing jewels in but made completely without nails. The outside of the chest has been lacquered red and inlaid with some very fine parquetry of a fruiting tree.", "A gilded oil lamp with ornate scrollwork cutouts of a warrior, and an evil sorcerer, meant to cast shadows on the wall in their shape.", "A fine glass lensed magnifying glass tied by a red silk ribbon to a codex filled with hundreds of pages of detailed illumination regarding the natural world."]
+		objetsdart = ("A beautiful elven vase that is slightly cracked. The painting around the outside of the vase depicts an elven god planting the world’s very first tree.", "Artwork of a battle showing the local lords fighting off an attack, painted by a long dead artist. The painting is set in a lovely gold leaf frame.", "A child’s painting framed beautifully. The art itself is fairly lacking but the frame is worth a decent amount, even more to someone who appreciates the juxtaposition of incredibly classy and messy.", "A jade tea set for two, stored on a lovely wooden tray.", "A large stone that (magically/naturally) glows. It is crafted into a statuette of a celestial being. The stone itself is worth little but the craftsmanship is very fine.", "A baby’s blanket made of the finest cloth. It is kept in a mothballed container for years. It smells faintly of mint, as if someone meant to store it for a very long time.", "A model of the solar system you reside in. It is made entirely out of brass with some of the labels faded over time. It could possibly be sold to a place of knowledge for a slightly higher price.", "A finely made flask and flask sheath. The flask is slightly dirty on the inside but with some running water and time, it will reveal a noble’s crest on the side immediately, skyrocketing the value.", "A deed to a very small portion of land that now resides in the very middle of a noble’s house. The city will buy it off of you for a good price.", "A golden likeness of the hand of a legendary female warlord, sitting atop a small pedestal bearing her name (Alanna the Fearless). The hand is able to hold a sword that is made to her specific specifications, all others simply fall out.", "A jade carving of a dog etched with its eulogy.", "Two delicate links of silver chain around a demon statuette of rare wood. Of particular interest to that demon’s cult.", "Seven beautifully etched bells in descending sizes, each made of silver and each with its own tone. Ringing one makes you slightly sleepy, others fill you with talkative urge or a powerful sense of unease.", "A handful of jasper puzzle pieces speckled with flecks of semiprecious stone (citrine, amethyst, garnet, etc.) that assemble themselves into the 2-D likeness of the last animal you pointed at.", "A painting of middling skill drawn by a local lord who has recently passed. “He was a bastard when he was alive. but an endearing one now he’s dead!”", "A painting of exquisite skill drawn by a discredited masterandom. “Hm… probably a fake. I’ll give you 100 gold, consider yourself lucky.”", "A palm-sized bronze automaton of a goose that lays a copper egg. Its eyes are rubies. Feed it copper coins and it produces more copper eggs.", "A small sapphire hairpin carved into the shape of an ocean wave.", "A volume of poetry by the late great bard _______.", "A volume of painstakingly illuminated holy scripture – bookmarked to some of the racier passages.", "A beautifully crafted but unbalanced and obviously impractical weapon. Is it a long-handled sword? A short-handled spear with a long blade? A throwing javelin with a 10-foot range?", "A silver and brass mirror with lewd designs hidden around the frame.", "The gaudy holy symbol of a cult to the defunct goddess of wealth.", "A small notebook with the random musings of ‘The Authorandom.’ Many of them pertain about the nature of the world, time, space and the future. Oddly no one has noticed that all the predictions in said notebook have come true.", "A crudely made painting of a king smiling. The painting itself is nothing special. What is however special is the painter but being one of his worse works it gets a rather low price.", "The (nonmagical) axe of Gunthar the Brave, a hero that is very well known and celebrated in his hometown, but not very well known elsewhere.", "A fancy belt buckle (broken beyond repair) from a legendary wizard hero, engraved with his initials.", "A set of candlesticks that on casual glance look extremely expensive which, upon very close examination, turn out to be made of brass instead of gold and with glass instead of gemstones.", "An exquisite scrimshaw design of dueling dragons made from a harpy claw.", "A chunk of metal that, when inspected, is just 100 gp melted and welded togetherandom.", "A clay pot full of a rare and valuable spice.", "A ridiculously unusable gold-plated fantasy sword.", "A canvas swatch full of lines and streaks of colors, all of which methods of color reproduction are lost to time.", "A round table with engraved magic circle and runes that casts a random Prestidigitation effect every day on a fixed lantern in the middle of the table.", "A blue-blade sword within a black leather sheath trimmed with silver leaves. It can be pulled out, but not drawn all the way out.", "A 2-foot golden statue of the deity Waukeen. Waukeen is seated on a chair made of coins.", "The beautifully carved silver lance tip of Sir Thais. It had tipped his ceremonial lance, which was all he had when the [insert current npc group the PCs just fought] brazenly ambushed the king’s parade a few months ago. The tip broke off after being plunged into the shoulder of [a bad guy] and was recovered by [bad guy minions]. Sadly, being ceremonial, the designs are intricate but not really effective for a lance tip, nearly blunt.", "A silver ring with a small piece of jet set in it.", "Boots that magically stay warm and dry, no matter what they’ve been through.", "A filigree gold goblet once owned by a prince.", "An amphora of ancient Fey wine (still good, and very tasty).", "A crown of wyvern fangs set in silverandom.", "A white cape with red embroidery. As you spill blood on the cape, the embroidery grows.", "A silver lined demon skull drinking cup.", "A gold brooch inlaid with jet and garnet.", "Huge ornately carved mahogany doors. Very heavy.", "A gilded and illuminated manuscript.", "A small box inlaid with mother of pearl.", "A matching pair of platinum rings. Each with a large pearl inset. They are worth 50gp each; or 100 gp for the set.", "The keystone of the entrance arch from a legendary temple destroyed in an ancient warandom. (50lb) – priceless to the right collectorandom.", "A 12x12ft, intricately patterned, thick, silk carpet. (200lb)", "An elven viol decorated with silver vines.", "A black onyx scepter with a head of a crow carved in the handle.", "A tapestry depicting the rise and fall of a recently conquered nearby city-state.", "A ceramic jug with glyphs of people teaching the spell ‘create food and water’. Can be used by wizards to copy into spell book.", "A see-through glass sword. The blade is made out of a clear blue glass while the handle is tinted blue.", "Ghostly and spectral remains that have been encased in a Crystal Ball. The ball glows faintly and has a swirling mist effect inside.", "A sheathe for a short sword long since forgotten. It is made with purple velvet wrapped owlbear leather, capped at the end by electrum. The inside has been smoothed considerably and lined with gelatinous cube remains. The effect of this is realized when drawing the sword, the sheathe generates zero sound whatsoeverandom. There is a carved wooden replica of the sword inside the sheathe, and all are contained within a see-through glass case wherein the sheathe lays horizontally.", "A headframe for a bed made with black ash logs. There are carved pictures of ravens decorating the headboard, and gold has been pressed into the carvings.", "A small gem encrusted crown, too small for most races, the crown is unique in that it has horsehair attached, allowing the crown to be worn as a wig.", "Iron ball and chain, there are carefully chiseled etchings in the chain and around the ball in dwarvish. If read, the etchings reveal a song about a criminal held in confinement for killing a noble, but her jailhouse was besieged by bandits for a yearandom. After the first verse, the faint chiseled etchings become deeper and clearer, telling of the dwarf’s temporary release and subsequent victory in combat of the besiegers alongside her jailers. The third and final verse is carved faintly and carefully again, detailing the dwarf continuing her life sentence until her death.", "An ivory tusk the length of an arm but carved with scenes from a battle long ago.", "A polished brass and copper clockwork toy of a small cottage, a farmer and their animals that moves when wound. The farmer chases a toy chicken with an axe.", "A scrimshaw pipe. When puffed on small skeletal animal smoke shapes rise out.", "A white porcelain chamber pot, the much-maligned last work of a great artist who went mad. The pot has the signature of the artist scrawled on it in a shaky hand.", "A painting that was started but not finished that depicts a beautiful landscape. It was started by a famous painter but unfortunately, he died halfway through finishing it. Parts of it are still sketched while others are fully painted.", "A tiny sundial made from a single piece of platinum.", "This ornate oak chair is both artsy AND functional. Sculpted by talented elven Craftsman as a wealthy dining set but have been split up due to warandom. Each chair depicts a different scene in a major war that happened thousands of years ago.", "A small, ornate hand-mirror, with decorative trim and a quote running along the edges that reads ‘Beauty is Diligence in Physical Form’.", "a painting with a mage shouting spells, it is clearly readable out of his mouth, but the letters become denser and denser until it’s only black paint.", "A portrait that makes a 3d bust illusion of a designated person. Requires a simple ritual to ‘take the picture’.", "A mirror that makes you look more attractive via illusion magic.", "A vase made from beautiful stone, carved with celestial figures around it, some marble inlays", "A silver circlet with a glowing stone in it, it can be used to cast light once per day", "An abstract art piece, not of any notable artist, but painted with specks of stones with permanent and colorful illumination.", "An ornate mantle clock that rings the hour with twelve separate melodies.", "A boldly colored quartz the size of a pigeon’s egg, etched and painted in such a way that when it is placed to one’s eye in the light, they see a clever but naughty image of a beautiful person in the nude.", "A wood bound codex filled illuminated with several hundred pages of highly colorful and anatomically difficult descriptions of sexual positions. The codex is sealed with a small brass chain. The text of the manuscript is in a language that is not common.", "A disk of clay with extremely fine etchings of semi-concentric lines that seem to spiral outwards from the center in tight, semi random wiggly spirals. It has been broken into three shards.", "A hat-stand made with ornate knobs of polished brass on the ends of the hooks. The knobs are animal heads in fine detail.", "A desktop ornament made of pink clear glass in the shape of a pig with a bright red glass apple in its mouth. When the pig is rubbed, it makes a magical oink noise.", "An ornate, decorative inkpot and penknife made of rare animal horn.", "A wire basket handled rapier of ornate design, with a fake ruby made of glass mounted in the pommel. The rapier is mounted to be a trophy on a wall. A small plaque reads, ‘Wrath’.", "A large globe showing the known world and a nested set of platonic solids, all made of brass. The entire contraption is over a meter across.", "A palm sized gelatinous cube containing a finely crafted model ship. The cube has been permanently suspended in animation with magic and is non-threatening.", "A painting of a flail snail enhanced by magic to project faint rainbow light from the shell of the flail snail.", "a handcrafted dreamcatcher adorned with werewolf teeth", "The mask of a cloud giant. The mask is pearl white and has light pink stripes.", "A sentient, immobile, carved basalt statue of a jellyfish, summoned to godhood by a cult of Koa-Toa", "Silver Body chains, worn by a high priestess Yuan-Ti.", "A mind flayers brain kept inside of a glass containerandom.", "A perfectly preserved molt of a Yuan-Ti Abomination. The molt is displayed on a large wooden platform.", "A necklace with a large pearl eye, around the eye are ten smaller pearl eyes branching off of the central eye. The necklace is gold and fashioned to depict a beholderandom.", "A small wood totem carved to resemble a werewolf, stolen from a cult of Malarandom.", "A clock in the image of an owlbear’s face. It is of masterwork gnomish quality. Every hour the owlbear opens its mouth and a -hoot hoot- sound emanates from the clock. At nighttime the eyes of the owlbear glow blood red.", "A gnomish tinkered hummingbird that fly’s in place for eternity.", "A palm sized jade turtle. While visibly impressive, most appraisers know it is of sub-par craftsmanship.", "A glass display with the first 100 gold coins minted by a nearby dwarven civilization.", "A display of a stone giants stone club. far too heavy to wield by medium sized creatures.", "A grey ooze that has been polymorphed into a throw rug. The ooze is unable to move across the floor on its own, however is constantly moving ‘within’ itself, giving the appearance of a swirling void.", "A palm sized carved stone replica of the Tomb of Horrors.", "A single Coatl feather, on a palm leaf.", "A candle made of red wax, in the image of a fire salamander", "A candle holder fashioned to resemble a fire mephit holding the candle. The candle holder is made of silverandom.", "The crown of a lizard king. The crown is made of gold and has images of lizardfolk fighting various fey creatures for control of a swamp.", "A perfectly preserved bone skull of a Sahuagin, on a corral wall mount", "The wrappings of a mummy inside a locked trunk.", "A small living carnivorous plant, inside of a notably larger iron cage.", "A carved golden sun, meant to mounted on a wall", "A stone tiled gameboard. the gameboard has stone figurines of adventurers fighting goblins in a dungeon.", "A painting of a ship sailing away from Waterdeep bay.", "A carved tusk of an unknown monster, depicting druids in the middle of a ritual", "An ornate, smooth orb of hardened tree sap (mixed with lavender dye.) It has the appearance of a round translucent ball (the size of a tennis ball in real life) with a dark purple hue and is often mistaken for an old family heirloom. Perhaps an Eboron spell wright believes it is her great grandmother’s spell casting focus, passed down for generations, or is a rather loud-mouthed, malicious constable found in his office every morning adoring his magnificent paper weight with an unusual amount of quiet glee?", "A singular wooden box, with 1-year worth of every spice in the world.", "A non-magical stone ‘official’ seal carved of three birds in flight with a blank spot where the buyer’s official crest can be added.", "Six ornately decorated candles with religious symbolism, and tapers (for lighting), in a small, smoked boxwood case of fine craftsmanship, with space for a seventh candle.", "A finely tanned, soft leather pouch filled with thirty-six small, polished hematite tiles about 2 cm across, inscribed with non-magical glyphs on both sides. Some of the tiles have different glyphs on opposing sides. The pouch has a leather drawstring.", "A birch and mahogany game-board approximately 30 centimeters across. The squares of the board are arrayed in a 9×9 pattern. A small set of two matching birch tables only 10 centimeters high accompany the board.", "A brass and glass hand-mirror with an intricate wirework for the handle. The wirework is of a bird in a cage.", "A polished brass telescoping spyglass, compass, octant, and slide rule set with precisely engraved markings and extreme precision. It comes in a velvet lined wooden case that has been treated with beeswax.", "A small chest for storing jewels in but made completely without nails. The outside of the chest has been lacquered red and inlaid with some very fine parquetry of a fruiting tree.", "A gilded oil lamp with ornate scrollwork cutouts of a warrior, and an evil sorcerer, meant to cast shadows on the wall in their shape.", "A fine glass lensed magnifying glass tied by a red silk ribbon to a codex filled with hundreds of pages of detailed illumination regarding the natural world.")
 	
 		aout += random.choice(objetsdart)
 		value = value.replace('\n> ','')
@@ -801,9 +801,9 @@ def treasure_gen():
 	def potions():
 		potion = "\n> Potion: "
 		d6 = random.randint(1,3)
-		p1 = ["Animal Control (250 gp)", "Clairaudience (250 gp)", "Clairvoyance (300 gp)", "Climbing (300 gp)", "Delusion", "Delusion", "Diminution (300 gp)", "Dragon Control (700 gp)", "Elixir of Health (350 gp)", "Elixir of Madness", "Elixir of Madness", "Elixir of Youth (500 gp)", "ESP (500 gp)", "Extra-healing (400 gp)", "Extra-healing (400 gp)", "Fire Breath (400 gp)", "Fire Resistance (250 gp)", "Flying (500 gp)", "Gaseous Form (300 gp)"]
-		p2 = ["Giant Control (600 gp)","Giant Strength Warrior (550 gp)","Growth (250 gp)","Healing (200 gp)","Healing (200 gp)","Heroism Warrior (300 gp)","Human Control (500 gp)","Invisibility (250 gp)","Invulnerability Warrior (350 gp)","Levitation (250 gp)","Longevity (500 gp)","Oil of Acid Resistance (500 gp)","Oil of Disenchantment (750 gp)","Oil of Elemental Invulnerability (500 gp)","Oil of Etherealness (600 gp)","Oil of Fiery Burning (500 gp)","Oil of Fumbling","Oil of Impact (750 gp)","Oil of Slipperiness (400 gp)"]
-		p3 = ["Oil of Timelessness (500 gp)","Philter of Glibness (500 gp)","Phliter of Love (200 gp)","Phliter of Persuasiveness (400 gp)","Phliter of Stammering and Stuttering","Plant Control (250 gp)","Poison","Poison","Polymorph Self (200 gp)","Rainbow Hues (200 gp)","Speed (200 gp)","Super-heroism Warrior (450 gp)","Super-heroism Warrior (450 gp)","Weet Water (200 gp)","Treasure Finding (600 gp)","Undead Control (700 gp)","Ventriloquism (200 gp)","Vitality (300 gp)","Water Breathing (400 gp)"]	
+		p1 = ("Animal Control (250 gp)", "Clairaudience (250 gp)", "Clairvoyance (300 gp)", "Climbing (300 gp)", "Delusion", "Delusion", "Diminution (300 gp)", "Dragon Control (700 gp)", "Elixir of Health (350 gp)", "Elixir of Madness", "Elixir of Madness", "Elixir of Youth (500 gp)", "ESP (500 gp)", "Extra-healing (400 gp)", "Extra-healing (400 gp)", "Fire Breath (400 gp)", "Fire Resistance (250 gp)", "Flying (500 gp)", "Gaseous Form (300 gp)")
+		p2 = ("Giant Control (600 gp)","Giant Strength Warrior (550 gp)","Growth (250 gp)","Healing (200 gp)","Healing (200 gp)","Heroism Warrior (300 gp)","Human Control (500 gp)","Invisibility (250 gp)","Invulnerability Warrior (350 gp)","Levitation (250 gp)","Longevity (500 gp)","Oil of Acid Resistance (500 gp)","Oil of Disenchantment (750 gp)","Oil of Elemental Invulnerability (500 gp)","Oil of Etherealness (600 gp)","Oil of Fiery Burning (500 gp)","Oil of Fumbling","Oil of Impact (750 gp)","Oil of Slipperiness (400 gp)")
+		p3 = ("Oil of Timelessness (500 gp)","Philter of Glibness (500 gp)","Phliter of Love (200 gp)","Phliter of Persuasiveness (400 gp)","Phliter of Stammering and Stuttering","Plant Control (250 gp)","Poison","Poison","Polymorph Self (200 gp)","Rainbow Hues (200 gp)","Speed (200 gp)","Super-heroism Warrior (450 gp)","Super-heroism Warrior (450 gp)","Weet Water (200 gp)","Treasure Finding (600 gp)","Undead Control (700 gp)","Ventriloquism (200 gp)","Vitality (300 gp)","Water Breathing (400 gp)")
 		if d6 == 1:
 			potion += random.choice(p1)
 		if d6 == 2:
@@ -818,11 +818,11 @@ def treasure_gen():
 		sout = "\n> Scroll: "
 		level = ""
 		#             1 2 3 4 5 6 7 8 9 a b c d e f g h i j
-		num_spells = [1,1,1,1,1,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
-		wll = [1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,3,1,2,4]
-		wlu = [4,4,4,5,5,9,4,9,4,9,6,8,6,8,6,8,8,9,9]
-		pll = [1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,3,1,2,4]
-		plu = [4,4,4,6,6,7,4,7,4,7,6,6,6,6,6,6,8,7,7]
+		num_spells = (1,1,1,1,1,1,1,2,2,3,3,4,4,5,5,6,6,7,7)
+		wll = (1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,3,1,2,4)
+		wlu = (4,4,4,5,5,9,4,9,4,9,6,8,6,8,6,8,8,9,9)
+		pll = (1,1,1,1,1,2,1,2,1,2,1,1,1,1,1,3,1,2,4)
+		plu = (4,4,4,6,6,7,4,7,4,7,6,6,6,6,6,6,8,7,7)
 	
 		d6 = random.randint(1,3)
 		if d6 == 1 or d6 == 2:
@@ -841,7 +841,7 @@ def treasure_gen():
 	
 		if d6 == 3:
 			d20 = random.randint(0,18)
-			non_spell_scrolls = ["Map", \
+			non_spell_scrolls = ("Map", \
 			"Protection from Acid (2500 xp)", \
 			"Protection from Cold (2000 xp)", \
 			"Protection from Dragon Breath (2000 xp)", \
@@ -859,7 +859,7 @@ def treasure_gen():
 			"Protection from Possession (2000 xp)", \
 			"Protection from Undead (1500 xp)", \
 			"Protection from Water (1500 xp)", \
-			"Cursed"]
+			"Cursed")
 			sout += non_spell_scrolls[d20]
 	
 		return(sout)
@@ -869,7 +869,7 @@ def treasure_gen():
 	def rings():
 		rout = "\n> Ring of "
 		d20 = random.randint(0,18)
-		rings_low = ["Animal Friendship (1000 xp)",\
+		rings_low = ("Animal Friendship (1000 xp)",\
 					"Blinking (1000 xp)",\
 					"Chameleon Power (1000 xp)",\
 					"Clumsiness",\
@@ -886,9 +886,9 @@ def treasure_gen():
 					"Jumping (1000 xp)",\
 					"Jumping (1000 xp)",\
 					"Mammal Control (limited charges) (1000 xp)",\
-					"Protection (1000xp * level of protection)"]
+					"Protection (1000xp * level of protection)")
 	
-		rings_high = ["Protection (1,000 xp * level of protection xp)", \
+		rings_high = ("Protection (1,000 xp * level of protection xp)", \
 		"Protection (1,000 xp * level of protection xp)", \
 		"the Ram (750 xp)", \
 		"Regeneration (5,000 xp)", \
@@ -906,7 +906,7 @@ def treasure_gen():
 		"Multiple Wishes (limited charges) (5,000 xp)", \
 		"3 Wishes (limited charges) (3,000 xp)", \
 		"Wizardry (limted charges) Wizard  (4,000 xp)", \
-		"X-Ray Vision (4,000 xp)"]
+		"X-Ray Vision (4,000 xp)")
 	
 		d3 = random.randint(1,3)
 		if d3 == 1 or d3 == 2:
@@ -920,7 +920,7 @@ def treasure_gen():
 	# Rod Picker
 	def rods():
 		rout = "\n> Rod of "
-		rods = ["Absorption Priest, Wizard (7,500 xp)", \
+		rods = ("Absorption Priest, Wizard (7,500 xp)", \
 		"Absorption Priest, Wizard (7,500 xp)", \
 		"Alertness (7,000 xp)", \
 		"Alertness (7,000 xp)", \
@@ -938,7 +938,7 @@ def treasure_gen():
 		"Smiting Priest, Wizard (4,000 xp)", \
 		"Splendor (2,500 xp)", \
 		"Terror (3,000 xp)", \
-		"Terror (3,000 xp)"]
+		"Terror (3,000 xp)")
 	
 		rout += random.choice(rods)
 		return(rout)
@@ -947,7 +947,7 @@ def treasure_gen():
 	# Staff Picker
 	def staffs():
 		stout = "\n> Staff of "
-		staffs = ["Mace (1500 xp)",\
+		staffs = ("Mace (1500 xp)",\
 			"Mace (1500 xp)",\
 			"Command Priest Wizard (5000 xp)",\
 			"Curing Priest (6000 xp)",\
@@ -965,7 +965,7 @@ def treasure_gen():
 			"Thunder & Lightning (8000 xp)",\
 			"Withering (8000 xp)",\
 			"Withering (8000 xp)",\
-			"Woodlands Druid (8000 xp)"]
+			"Woodlands Druid (8000 xp)")
 		stout += random.choice(staffs)
 		return(stout)		
 			
@@ -973,25 +973,25 @@ def treasure_gen():
 	# Wand Picker
 	def wands():
 		wout = "\n> Wand of "
-		wands = ["Conjuration (Wizard) (7,000 xp)", \
-			"Earth and Stone (1,000 xp)", \
-			"Enemy Detection (2,000 xp)", \
-			"Fear (Priest, Wizard) (3,000 xp)", \
-			"Fire (Wizard) (4,500 xp)", \
-			"Flame Extinguishing (1,500 xp)", \
-			"Frost (Wizard) (6,000 xp)", \
-			"Illumination (2,000 xp)", \
-			"Illusion (Wizard) (3,000 xp)", \
-			"Lightning (Wizard) (4,000 xp)", \
-			"Magic Detection (2,500 xp)", \
-			"Magic Missiles (4,000 xp)", \
-			"Metal and Mineral Detection (1,500 xp)", \
-			"Negation (3,500 xp)", \
-			"Paralyzation (Wizard) (3,500 xp)", \
-			"Polymorphing (Wizard) (3,500 xp)", \
-			"Secret Door and Trap Location (5,000 xp)", \
-			"Size Alteration (3,000 xp)", \
-			"Wonder (6,000 xp)"]
+		wands = ("Conjuration (Wizard) (7,000 xp)", \
+					"Earth and Stone (1,000 xp)", \
+					"Enemy Detection (2,000 xp)", \
+					"Fear (Priest, Wizard) (3,000 xp)", \
+					"Fire (Wizard) (4,500 xp)", \
+					"Flame Extinguishing (1,500 xp)", \
+					"Frost (Wizard) (6,000 xp)", \
+					"Illumination (2,000 xp)", \
+					"Illusion (Wizard) (3,000 xp)", \
+					"Lightning (Wizard) (4,000 xp)", \
+					"Magic Detection (2,500 xp)", \
+					"Magic Missiles (4,000 xp)", \
+					"Metal and Mineral Detection (1,500 xp)", \
+					"Negation (3,500 xp)", \
+					"Paralyzation (Wizard) (3,500 xp)", \
+					"Polymorphing (Wizard) (3,500 xp)", \
+					"Secret Door and Trap Location (5,000 xp)", \
+					"Size Alteration (3,000 xp)", \
+					"Wonder (6,000 xp)")
 		wout += random.choice(wands)
 		return(wout)
 	
@@ -999,25 +999,25 @@ def treasure_gen():
 	# Misc Books and Tomes Picker
 	def booksandtomes():
 		bout = "\n> "
-		l = ["Boccob’s Blessed Book (Wizard) (4,500 xp)", \
-			"Boccob’s Blessed Book (Wizard) (4,500 xp)", \
-			"Boccob’s Blessed Book (Wizard) (4,500 xp)", \
-			"Book of Exalted Deeds (Priest) (8,000 xp)", \
-			"Book of Infinite Spells (9,000 xp)", \
-			"Book of Vile Darkness (Priest) (8,000 xp)", \
-			"Libram of Gainful Conjuration (Wizard) (8,000 xp)", \
-			"Libram of Ineffable Damnation (Wizard) (8,000 xp)", \
-			"Libram of Silver Magic (Wizard) (8,000 xp)", \
-			"Manual of Bodily Health (5,000 xp)", \
-			"Manual of Gainful Exercise (5,000 xp)", \
-			"Manual of Golems (Priest, Wizard) (3,000 xp)", \
-			"Manual of Puissant Skill at Arms (Warrior) (8,000 xp)", \
-			"Manual of Quickness in Action (5,000 xp)", \
-			"Manual of Stealthy Pilferin (Rogue) (8,000 xp)", \
-			"Tome of Clear Thought (8,000 xp)", \
-			"Tome of Leadership and Influence (7,500 xp)", \
-			"Tome of Understanding (8,000 xp)", \
-			"Vacuous Grimoire"]
+		l = ("Boccob’s Blessed Book (Wizard) (4,500 xp)", \
+					"Boccob’s Blessed Book (Wizard) (4,500 xp)", \
+					"Boccob’s Blessed Book (Wizard) (4,500 xp)", \
+					"Book of Exalted Deeds (Priest) (8,000 xp)", \
+					"Book of Infinite Spells (9,000 xp)", \
+					"Book of Vile Darkness (Priest) (8,000 xp)", \
+					"Libram of Gainful Conjuration (Wizard) (8,000 xp)", \
+					"Libram of Ineffable Damnation (Wizard) (8,000 xp)", \
+					"Libram of Silver Magic (Wizard) (8,000 xp)", \
+					"Manual of Bodily Health (5,000 xp)", \
+					"Manual of Gainful Exercise (5,000 xp)", \
+					"Manual of Golems (Priest, Wizard) (3,000 xp)", \
+					"Manual of Puissant Skill at Arms (Warrior) (8,000 xp)", \
+					"Manual of Quickness in Action (5,000 xp)", \
+					"Manual of Stealthy Pilferin (Rogue) (8,000 xp)", \
+					"Tome of Clear Thought (8,000 xp)", \
+					"Tome of Leadership and Influence (7,500 xp)", \
+					"Tome of Understanding (8,000 xp)", \
+					"Vacuous Grimoire")
 		bout += random.choice(l)
 		return(bout)
 	
@@ -1025,44 +1025,44 @@ def treasure_gen():
 	# Misc Jewels and Jewelry Picker
 	def jewelry():
 		jout = "\n> "
-		l1 = ["Amulet of Inescapable Location", \
-			"Amulet of Life Protection (5,000 xp)", \
-			"Amulet of the Planes (6,000 xp)", \
-			"Amulet of Proof Against Detection and Location (4,000 xp)", \
-			"Amulet Versus Undead (200 xp per level)", \
-			"Beads of Force (200 xp ea.)", \
-			"Brooch of Shielding (1,000 xp)", \
-			"Gem of Brightness (2,000 xp)", \
-			"Gem of Insight (3,000 xp)", \
-			"Gem of Seeing (2,000 xp)", \
-			"Jewel of Attacks", \
-			"Jewel of Flawlessness", \
-			"Medallion of ESP (2,000 xp)", \
-			"Medallion of Thought Projection", \
-			"Necklace of Adaptation (1,000 xp)", \
-			"Necklace of Missiles (100 xp per die of damage)", \
-			"Necklace of Missiles (100 xp per die of damage)", \
-			"Necklace of Prayer Beads (Priest) (500 xp per bead)", \
-			"Necklace of Strangulation"]
-		l2 = ["Pearl of Power (Wizard) (200 xp per level)", \
-			"Pearl of the Sirines (900 xp)", \
-			"Pearl of Wisdom (Priest) (500 xp)", \
-			"Periapt of Foul Rotting", \
-			"Periapt of Health (1,000 xp)", \
-			"Periapt of Proof Against Poison (1,500 xp)", \
-			"Periapt of Wound Closure (1,000 xp)", \
-			"Phylactery of Faithfulness (Priest) (1,000 xp)", \
-			"Phylactery of Long Years (Priest) (3,000 xp)", \
-			"Phylactery of Monstrous Attention (Priest)", \
-			"Scarab of Death", \
-			"Scarab of Enraging Enemies (1,000 xp)", \
-			"Scarab of Insanity (1,500 xp)", \
-			"Scarab of Protection (2,500 xp)", \
-			"Scarab Versus Golems", \
-			"Talisman of Pure Good (Priest) (3,500 xp)", \
-			"Talisman of the Sphere (Wizard) (100 xp)", \
-			"Talisman of Ultimate Evil (Priest) (3,500 xp)", \
-			"Talisman of Zagy (1,000 xp)"]
+		l1 = ("Amulet of Inescapable Location", \
+					"Amulet of Life Protection (5,000 xp)", \
+					"Amulet of the Planes (6,000 xp)", \
+					"Amulet of Proof Against Detection and Location (4,000 xp)", \
+					"Amulet Versus Undead (200 xp per level)", \
+					"Beads of Force (200 xp ea.)", \
+					"Brooch of Shielding (1,000 xp)", \
+					"Gem of Brightness (2,000 xp)", \
+					"Gem of Insight (3,000 xp)", \
+					"Gem of Seeing (2,000 xp)", \
+					"Jewel of Attacks", \
+					"Jewel of Flawlessness", \
+					"Medallion of ESP (2,000 xp)", \
+					"Medallion of Thought Projection", \
+					"Necklace of Adaptation (1,000 xp)", \
+					"Necklace of Missiles (100 xp per die of damage)", \
+					"Necklace of Missiles (100 xp per die of damage)", \
+					"Necklace of Prayer Beads (Priest) (500 xp per bead)", \
+					"Necklace of Strangulation")
+		l2 = ("Pearl of Power (Wizard) (200 xp per level)", \
+					"Pearl of the Sirines (900 xp)", \
+					"Pearl of Wisdom (Priest) (500 xp)", \
+					"Periapt of Foul Rotting", \
+					"Periapt of Health (1,000 xp)", \
+					"Periapt of Proof Against Poison (1,500 xp)", \
+					"Periapt of Wound Closure (1,000 xp)", \
+					"Phylactery of Faithfulness (Priest) (1,000 xp)", \
+					"Phylactery of Long Years (Priest) (3,000 xp)", \
+					"Phylactery of Monstrous Attention (Priest)", \
+					"Scarab of Death", \
+					"Scarab of Enraging Enemies (1,000 xp)", \
+					"Scarab of Insanity (1,500 xp)", \
+					"Scarab of Protection (2,500 xp)", \
+					"Scarab Versus Golems", \
+					"Talisman of Pure Good (Priest) (3,500 xp)", \
+					"Talisman of the Sphere (Wizard) (100 xp)", \
+					"Talisman of Ultimate Evil (Priest) (3,500 xp)", \
+					"Talisman of Zagy (1,000 xp)")
 	
 		if random.randint(1,2) == 1:
 			jout += random.choice(l1)
@@ -1075,24 +1075,24 @@ def treasure_gen():
 	# Misc Cloaks and Robes Picker
 	def cloaks():
 		rout = "\n> "
-		l = ["Cloak of Arachnida (3,000 xp)", \
-			"Cloak of Displacement (3,000 xp)", \
-			"Cloak of Elvenkind (1,000 xp)", \
-			"Cloak of Elvenkind (1,000 xp)", \
-			"Cloak of Poisonousness", \
-			"Cloak of Protection (1,000 xp per point)", \
-			"Cloak of Protection (1,000 xp per point)", \
-			"Cloak of the Bat (1,500 xp)", \
-			"Cloak of the Manta Ray (2,000 xp)", \
-			"Robe of the Archmagi (Wizard) (6,000 xp)", \
-			"Robe of Blending (3,500 xp)", \
-			"Robe of Eyes (Wizard) (4,500 xp)", \
-			"Robe of Powerlessness (Wizard)", \
-			"Robe of Scintillating Colors (Priest, Wizard) (2,750 xp)", \
-			"Robe of Stars (Wizard) (4,000 xp)", \
-			"Robe of Useful Items (Wizard) (1,500 xp)", \
-			"Robe of Useful Items (Wizard) (1,500 xp)", \
-			"Robe of Vermin (Wizard)"]
+		l = ("Cloak of Arachnida (3,000 xp)", \
+					"Cloak of Displacement (3,000 xp)", \
+					"Cloak of Elvenkind (1,000 xp)", \
+					"Cloak of Elvenkind (1,000 xp)", \
+					"Cloak of Poisonousness", \
+					"Cloak of Protection (1,000 xp per point)", \
+					"Cloak of Protection (1,000 xp per point)", \
+					"Cloak of the Bat (1,500 xp)", \
+					"Cloak of the Manta Ray (2,000 xp)", \
+					"Robe of the Archmagi (Wizard) (6,000 xp)", \
+					"Robe of Blending (3,500 xp)", \
+					"Robe of Eyes (Wizard) (4,500 xp)", \
+					"Robe of Powerlessness (Wizard)", \
+					"Robe of Scintillating Colors (Priest, Wizard) (2,750 xp)", \
+					"Robe of Stars (Wizard) (4,000 xp)", \
+					"Robe of Useful Items (Wizard) (1,500 xp)", \
+					"Robe of Useful Items (Wizard) (1,500 xp)", \
+					"Robe of Vermin (Wizard)")
 		rout += random.choice(l)
 		return(rout)
 	
@@ -1100,25 +1100,25 @@ def treasure_gen():
 	# Misc Boots and Gloves Picker
 	def boots():
 		bout = "\n> "
-		l = ["Boots of Dancing", \
-			"Boots of Elvenkind (1,000 xp)", \
-			"Boots of Levitation (2,000 xp)", \
-			"Boots of Speed (2,500 xp)", \
-			"Boots of Striding and Springing (2,500 xp)", \
-			"Boots of the North (1,500 xp)", \
-			"Boots of Varied Tracks (1,500 xp)", \
-			"Boots, Winged (2,000 xp)", \
-			"Bracers of Archery (Warrior) (1,000 xp)", \
-			"Bracers of Brachiation (1,000 xp)", \
-			"Bracers of Defense (500 xp per AC less than 10)", \
-			"Bracers of Defense (500 xp per AC less than 10)", \
-			"Bracers of Defenselessness", \
-			"Gauntlets of Dexterity (1,000 xp)", \
-			"Gauntets of Fumbling", \
-			"Gauntlets of Ogre Power (Priest, Rogue, Warrior) (1,000 xp)", \
-			"Gauntlets of Swimming and Climbing (Priest, Rogue, Warrior) (1,000 xp)", \
-			"Gloves of Missile Snaring (1,500 xp)", \
-			"Slippers of Spider Climbing (1,000 xp)"]
+		l = ("Boots of Dancing", \
+					"Boots of Elvenkind (1,000 xp)", \
+					"Boots of Levitation (2,000 xp)", \
+					"Boots of Speed (2,500 xp)", \
+					"Boots of Striding and Springing (2,500 xp)", \
+					"Boots of the North (1,500 xp)", \
+					"Boots of Varied Tracks (1,500 xp)", \
+					"Boots, Winged (2,000 xp)", \
+					"Bracers of Archery (Warrior) (1,000 xp)", \
+					"Bracers of Brachiation (1,000 xp)", \
+					"Bracers of Defense (500 xp per AC less than 10)", \
+					"Bracers of Defense (500 xp per AC less than 10)", \
+					"Bracers of Defenselessness", \
+					"Gauntlets of Dexterity (1,000 xp)", \
+					"Gauntets of Fumbling", \
+					"Gauntlets of Ogre Power (Priest, Rogue, Warrior) (1,000 xp)", \
+					"Gauntlets of Swimming and Climbing (Priest, Rogue, Warrior) (1,000 xp)", \
+					"Gloves of Missile Snaring (1,500 xp)", \
+					"Slippers of Spider Climbing (1,000 xp)")
 		bout += random.choice(l)
 		return(bout)
 	
@@ -1126,26 +1126,26 @@ def treasure_gen():
 	# Misc Girdles and Helms Picker
 	def girdles():
 		out = "\n> "
-		l =["Girdle of Dwarvenkind (3,500 xp)", \
-			"Girdle of Dwarvenkind (3,500 xp)", \
-			"Girdle of Dwarvenkind (3,500 xp)", \
-			"Girdle of Femininity/Masculinity", \
-			"Girdle of Giant Strength (Priest, Rogue, Warrior) (2,000 xp)", \
-			"Girdle of Giant Strength (Priest, Rogue, Warrior) (2,000 xp)", \
-			"Girdle of Many Pouches (1,000 xp)", \
-			"Girdle of Many Pouches (1,000 xp)", \
-			"Hat of Disguise (1,000 xp)", \
-			"Hat of Stupidity", \
-			"Helm of Brilliance (2,500 xp)", \
-			"Helm of Comprehending", \
-			"Helm of Comprehending", \
-			"Languages and Reading", \
-			"Magic (1,000 xp)", \
-			"Helm of Opposite Alignment", \
-			"Helm of Telepathy (3,000 xp)", \
-			"Helm of Teleportation (2,500 xp)", \
-			"Helm of Underwater Action (1,000 xp)", \
-			"Helm of Underwater Action (1,000 xp)"]
+		l =("Girdle of Dwarvenkind (3,500 xp)", \
+					"Girdle of Dwarvenkind (3,500 xp)", \
+					"Girdle of Dwarvenkind (3,500 xp)", \
+					"Girdle of Femininity/Masculinity", \
+					"Girdle of Giant Strength (Priest, Rogue, Warrior) (2,000 xp)", \
+					"Girdle of Giant Strength (Priest, Rogue, Warrior) (2,000 xp)", \
+					"Girdle of Many Pouches (1,000 xp)", \
+					"Girdle of Many Pouches (1,000 xp)", \
+					"Hat of Disguise (1,000 xp)", \
+					"Hat of Stupidity", \
+					"Helm of Brilliance (2,500 xp)", \
+					"Helm of Comprehending", \
+					"Helm of Comprehending", \
+					"Languages and Reading", \
+					"Magic (1,000 xp)", \
+					"Helm of Opposite Alignment", \
+					"Helm of Telepathy (3,000 xp)", \
+					"Helm of Teleportation (2,500 xp)", \
+					"Helm of Underwater Action (1,000 xp)", \
+					"Helm of Underwater Action (1,000 xp)")
 		out += random.choice(l)
 		return(out)
 	
@@ -1153,25 +1153,25 @@ def treasure_gen():
 	# Misc Bags and Bottles Picker
 	def bags():
 		out = "\n> "
-		l = ["Alchemy Jug (3,000 xp)", \
-			"Bag of Beans (1,000 xp)", \
-			"Bag of Devouring", \
-			"Bag of Holding (5,000 xp)", \
-			"Bag of Holding (5,000 xp)", \
-			"Bag of Holding (5,000 xp)", \
-			"Bag of Holding (5,000 xp)", \
-			"Bag of Transmuting", \
-			"Bag of Tricks (2,500 xp)", \
-			"Beaker of Plentiful Potions (1,500 xp)", \
-			"Bucknard’s Everfull Purse", \
-			"Decanter of Endless Water (1,000 xp)", \
-			"Efreeti Bottle (9,000 xp)", \
-			"Eversmoking Bottle (500 xp)", \
-			"Flask of Curses", \
-			"Heward’s Handy Haversack (3,000 xp)", \
-			"Iron Flask", \
-			"Portable Hole (5,000 xp)", \
-			"Pouch of Accessibility 1,500"]
+		l = ("Alchemy Jug (3,000 xp)", \
+					"Bag of Beans (1,000 xp)", \
+					"Bag of Devouring", \
+					"Bag of Holding (5,000 xp)", \
+					"Bag of Holding (5,000 xp)", \
+					"Bag of Holding (5,000 xp)", \
+					"Bag of Holding (5,000 xp)", \
+					"Bag of Transmuting", \
+					"Bag of Tricks (2,500 xp)", \
+					"Beaker of Plentiful Potions (1,500 xp)", \
+					"Bucknard’s Everfull Purse", \
+					"Decanter of Endless Water (1,000 xp)", \
+					"Efreeti Bottle (9,000 xp)", \
+					"Eversmoking Bottle (500 xp)", \
+					"Flask of Curses", \
+					"Heward’s Handy Haversack (3,000 xp)", \
+					"Iron Flask", \
+					"Portable Hole (5,000 xp)", \
+					"Pouch of Accessibility 1,500")
 		out += random.choice(l)
 		return(out)
 	
@@ -1179,25 +1179,25 @@ def treasure_gen():
 	# Misc Dusts and Stones Picker
 	def dusts():
 		out = "\n> "
-		l = ["Candle of Invocation (Priest) (1000 xp)", \
-			"Dust of Appearance (1000 xp)", \
-			"Dust of Disappearance (2000 xp)", \
-			"Dust of Dryness (1000 xp)", \
-			"Dust of Illusion (1000 xp)", \
-			"Dust of Tracelessness (500 xp)", \
-			"Dust of Sneezing and Choking", \
-			"Incense of Meditation (Priest) (500 xp)", \
-			"Incense of Obsession (Priest)", \
-			"Ioun Stones (300 xp per stone)", \
-			"Keoghtom’s Ointment 500", \
-			"Nolzur’s Marvelous Pigments 500 xp per stone", \
-			"Philosopher’s Stone (1000 xp)", \
-			"Smoke Powder**", \
-			"Sovereign Glue (1000 xp)", \
-			"Stone of Controlling Earth Elementals (1500 xp)", \
-			"Stone of Good Luck (Luckstone) (3000 xp)", \
-			"Stone of Weight (Loadstone)", \
-			"Universal Solvent (1000 xp)"]
+		l = ("Candle of Invocation (Priest) (1000 xp)", \
+					"Dust of Appearance (1000 xp)", \
+					"Dust of Disappearance (2000 xp)", \
+					"Dust of Dryness (1000 xp)", \
+					"Dust of Illusion (1000 xp)", \
+					"Dust of Tracelessness (500 xp)", \
+					"Dust of Sneezing and Choking", \
+					"Incense of Meditation (Priest) (500 xp)", \
+					"Incense of Obsession (Priest)", \
+					"Ioun Stones (300 xp per stone)", \
+					"Keoghtom’s Ointment 500", \
+					"Nolzur’s Marvelous Pigments 500 xp per stone", \
+					"Philosopher’s Stone (1000 xp)", \
+					"Smoke Powder**", \
+					"Sovereign Glue (1000 xp)", \
+					"Stone of Controlling Earth Elementals (1500 xp)", \
+					"Stone of Good Luck (Luckstone) (3000 xp)", \
+					"Stone of Weight (Loadstone)", \
+					"Universal Solvent (1000 xp)")
 		out += random.choice(l)
 		return(out)
 	
@@ -1205,25 +1205,25 @@ def treasure_gen():
 	# Misc Household Items and Tools Picker
 	def tools():
 		out = "\n> "
-		l = ["Brazier Commanding Fire Elementals (Wizard) (4000 xp)", \
-			"Brazier of Sleep Smoke (Wizard)", \
-			"Broom of Animated Attack", \
-			"Broom of Flying (2000 xp)", \
-			"Carpet of Flying (7500 xp)", \
-			"Mattock of the Titans (Warrior) (3500 xp)", \
-			"Maul of the Titans (Warrior) (4000 xp)", \
-			"Mirror of Life Trapping (Wizard) (2500 xp)", \
-			"Mirror of Mental Prowess (5000 xp)", \
-			"Mirror of Opposition", \
-			"Murlynd’s Spoon (750 xp)", \
-			"Rope of Climbing (1000 xp)", \
-			"Rope of Climbing (1000 xp)", \
-			"Rope of Constriction", \
-			"Rope of Entanglement (1500 xp)", \
-			"Rug of Smothering", \
-			"Rug of Welcome (Wizard) (6500 xp)", \
-			"Saw of Mighty Cutting (Warrior) (2000 xp)", \
-			"Spade of Colossal Excavation (Warrior) (1000 xp)"]
+		l = ("Brazier Commanding Fire Elementals (Wizard) (4000 xp)", \
+					"Brazier of Sleep Smoke (Wizard)", \
+					"Broom of Animated Attack", \
+					"Broom of Flying (2000 xp)", \
+					"Carpet of Flying (7500 xp)", \
+					"Mattock of the Titans (Warrior) (3500 xp)", \
+					"Maul of the Titans (Warrior) (4000 xp)", \
+					"Mirror of Life Trapping (Wizard) (2500 xp)", \
+					"Mirror of Mental Prowess (5000 xp)", \
+					"Mirror of Opposition", \
+					"Murlynd’s Spoon (750 xp)", \
+					"Rope of Climbing (1000 xp)", \
+					"Rope of Climbing (1000 xp)", \
+					"Rope of Constriction", \
+					"Rope of Entanglement (1500 xp)", \
+					"Rug of Smothering", \
+					"Rug of Welcome (Wizard) (6500 xp)", \
+					"Saw of Mighty Cutting (Warrior) (2000 xp)", \
+					"Spade of Colossal Excavation (Warrior) (1000 xp)")
 		out += random.choice(l)
 		return(out)
 	
@@ -1231,25 +1231,25 @@ def treasure_gen():
 	# Misc Musical Instruments Picker
 	def instruements():
 		out = "\n> "
-		l = ["Chime of Interruption (2000 xp)", \
-			"Chime of Opening (3500 xp)", \
-			"Chime of Hunger", \
-			"Drums of Deafening", \
-			"Drums of Panic (6500 xp)", \
-			"Harp of Charming (5000 xp)", \
-			"Harp of Discord", \
-			"Horn of Blasting (1000 xp)", \
-			"Horn of Bubbles", \
-			"Horn of Collapsing (1500 xp)", \
-			"Horn of Fog (400 xp)", \
-			"Horn of Goodness (Evil) (750 xp)", \
-			"Horn of the Tritons (Priest, Warrior) (2000 xp)", \
-			"Horn of Valhalla (1000 xp)", \
-			"Lyre of Building (5000 xp)", \
-			"Pipes of Haunting (400 xp)", \
-			"Pipes of Pain", \
-			"Pipes of Sounding (1000 xp)", \
-			"Pipes of the Sewers (2000 xp)"]
+		l = ("Chime of Interruption (2000 xp)", \
+					"Chime of Opening (3500 xp)", \
+					"Chime of Hunger", \
+					"Drums of Deafening", \
+					"Drums of Panic (6500 xp)", \
+					"Harp of Charming (5000 xp)", \
+					"Harp of Discord", \
+					"Horn of Blasting (1000 xp)", \
+					"Horn of Bubbles", \
+					"Horn of Collapsing (1500 xp)", \
+					"Horn of Fog (400 xp)", \
+					"Horn of Goodness (Evil) (750 xp)", \
+					"Horn of the Tritons (Priest, Warrior) (2000 xp)", \
+					"Horn of Valhalla (1000 xp)", \
+					"Lyre of Building (5000 xp)", \
+					"Pipes of Haunting (400 xp)", \
+					"Pipes of Pain", \
+					"Pipes of Sounding (1000 xp)", \
+					"Pipes of the Sewers (2000 xp)")
 		out += random.choice(l)
 		return(out)
 	
@@ -1258,44 +1258,44 @@ def treasure_gen():
 	# Misc Weird Stuff Picker
 	def weird():
 		out = "\n> "
-		l = ["Apparatus of Kwalish (8000 xp)", \
-			"Folding Boat (10000 xp)", \
-			"Folding Boat (10000 xp)", \
-			"Bowl Commanding Water Elementals (Wizard) (4000 xp)", \
-			"Bowl of Watery Death (Wizard)", \
-			"Censer Controlling Air Elementals (Wizard) (4000 xp)", \
-			"Censer of Summoning Hostile Air Elementals (Wizard)", \
-			"Crystal Ball (Wizard) (1000 xp)", \
-			"Crystal Ball (Wizard) (1000 xp)", \
-			"Crystal Hypnosis Ball (Wizard)", \
-			"Cube of Force (3000 xp)", \
-			"Cube of Frost Resistance (2000 xp)", \
-			"Cube of Frost Resistance (2000 xp)", \
-			"Cubic Gate (5000 xp)", \
-			"Daern’s Instant Fortress (7000 xp)", \
-			"Deck of Illusions (1500 xp)", \
-			"Deck of Many Things", \
-			"Eyes of Charming (Wizard) (4000 xp)", \
-			"Eyes of Minute Seeing (2000 xp)", \
-			"Eyes of Petrification", \
-			"Eyes of the Eagle (3500 xp)", \
-			"Figurine of Wondrous Power (100 xp per HD of figurine)", \
-			"Figurine of Wondrous Power (100 xp per HD of figurine)", \
-			"Horseshoes of a Zephyr (1500 xp)", \
-			"Horseshoes of Speed (2000 xp)", \
-			"Horseshoes of Speed (2000 xp)", \
-			"Iron Bands of Bilarro (750 xp)", \
-			"Lens of Detection (250 xp)", \
-			"Quaal’s Feather Token (1000 xp)", \
-			"Quiver of Ehlonna (1500 xp)", \
-			"Quiver of Ehlonna (1500 xp)", \
-			"Sheet of Smallness (1500 xp)", \
-			"Sphere of Annihilation (4000 xp)", \
-			"Stone Horse (2000 xp)", \
-			"Well of Many Worlds (6000 xp)", \
-			"Wind Fan (500 xp)", \
-			"Wind Fan (500 xp)", \
-			"Wings of Flying (750 xp)"]
+		l = ("Apparatus of Kwalish (8000 xp)", \
+					"Folding Boat (10000 xp)", \
+					"Folding Boat (10000 xp)", \
+					"Bowl Commanding Water Elementals (Wizard) (4000 xp)", \
+					"Bowl of Watery Death (Wizard)", \
+					"Censer Controlling Air Elementals (Wizard) (4000 xp)", \
+					"Censer of Summoning Hostile Air Elementals (Wizard)", \
+					"Crystal Ball (Wizard) (1000 xp)", \
+					"Crystal Ball (Wizard) (1000 xp)", \
+					"Crystal Hypnosis Ball (Wizard)", \
+					"Cube of Force (3000 xp)", \
+					"Cube of Frost Resistance (2000 xp)", \
+					"Cube of Frost Resistance (2000 xp)", \
+					"Cubic Gate (5000 xp)", \
+					"Daern’s Instant Fortress (7000 xp)", \
+					"Deck of Illusions (1500 xp)", \
+					"Deck of Many Things", \
+					"Eyes of Charming (Wizard) (4000 xp)", \
+					"Eyes of Minute Seeing (2000 xp)", \
+					"Eyes of Petrification", \
+					"Eyes of the Eagle (3500 xp)", \
+					"Figurine of Wondrous Power (100 xp per HD of figurine)", \
+					"Figurine of Wondrous Power (100 xp per HD of figurine)", \
+					"Horseshoes of a Zephyr (1500 xp)", \
+					"Horseshoes of Speed (2000 xp)", \
+					"Horseshoes of Speed (2000 xp)", \
+					"Iron Bands of Bilarro (750 xp)", \
+					"Lens of Detection (250 xp)", \
+					"Quaal’s Feather Token (1000 xp)", \
+					"Quiver of Ehlonna (1500 xp)", \
+					"Quiver of Ehlonna (1500 xp)", \
+					"Sheet of Smallness (1500 xp)", \
+					"Sphere of Annihilation (4000 xp)", \
+					"Stone Horse (2000 xp)", \
+					"Well of Many Worlds (6000 xp)", \
+					"Wind Fan (500 xp)", \
+					"Wind Fan (500 xp)", \
+					"Wings of Flying (750 xp)")
 		out += random.choice(l)
 		return(out)
 	
@@ -1306,31 +1306,31 @@ def treasure_gen():
 		mod = ""
 	
 		# get type of armor
-		armors = ['Banded mail', \
-				  "Brigandine", \
-				  "Chain mail", \
-				  "Chain mail", \
-				  "Chain mail", \
-				  "Field plate", \
-				  "Full plate", \
-				  "Leather", \
-				  "Plate mail", \
-				  "Plate mail", \
-				  "Plate mail", \
-				  "Plate mail", \
-				  "Ring mail", \
-				  "Scale mail", \
-				  "Shield small", \
-				  "Shield buckler", \
-				  "Shield medium", \
-				  "Shield large", \
-				  "Splint mail", \
-				  "Studded leather", \
-				  "Special"]
+		armors = ('Banded mail', \
+						  "Brigandine", \
+						  "Chain mail", \
+						  "Chain mail", \
+						  "Chain mail", \
+						  "Field plate", \
+						  "Full plate", \
+						  "Leather", \
+						  "Plate mail", \
+						  "Plate mail", \
+						  "Plate mail", \
+						  "Plate mail", \
+						  "Ring mail", \
+						  "Scale mail", \
+						  "Shield small", \
+						  "Shield buckler", \
+						  "Shield medium", \
+						  "Shield large", \
+						  "Splint mail", \
+						  "Studded leather", \
+						  "Special")
 		a = random.choice(armors)
 		
 		# determine if special
-		special_armors = ["Armor of Command (+1000 xp)", "Armor of Blending (+500 xp)", "Armor of Missile Attraction", "Armor of Rage", "Elven Chain Mail (+1000 xp)", "Plat Mail of Etherealness (5000 xp)", "Plate Mail of Fear (4000 xp)", "Plate Mail of Vulnerability", "Shield large, -1 AC, -4 AC vs missiles (400 xp)", "Shield +1 AC, Missile Attractor"]
+		special_armors = ("Armor of Command (+1000 xp)", "Armor of Blending (+500 xp)", "Armor of Missile Attraction", "Armor of Rage", "Elven Chain Mail (+1000 xp)", "Plat Mail of Etherealness (5000 xp)", "Plate Mail of Fear (4000 xp)", "Plate Mail of Vulnerability", "Shield large, -1 AC, -4 AC vs missiles (400 xp)", "Shield +1 AC, Missile Attractor")
 		if a == "Special":
 			a = random.choice(special_armors)
 			out += a
@@ -1338,8 +1338,8 @@ def treasure_gen():
 		# determine mod
 		else:
 			d20 = random.randint(0,19)
-			xps = [0, 0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 1500, 1500, 1500, 2000, 2000, 3000]
-			mods =[1, 1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -2,   -2,   -2,   -2,   -3,   -3,   -3,   -4,   -4,   -5]
+			xps = (0, 0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 1500, 1500, 1500, 2000, 2000, 3000)
+			mods =(1, 1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,   -2,   -2,   -2,   -2,   -3,   -3,   -3,   -4,   -4,   -5)
 	
 			mod = random.choice(mods)
 			xp = random.choice(xps)
@@ -1408,82 +1408,82 @@ def treasure_gen():
 	
 		if special == True:
 			d10 = random.randint(1,10)
-			sw1 = ["Arrow of Direction (2500 xp)", \
-					"Arrow of Slaying (250 xp)", \
-					"Axe +2, Throwing (750 xp)", \
-					"Axe of Hurling", \
-					"Bow +1 (500 xp)", \
-					"Bow +1 (500 xp)", \
-					"Crossbow of Accuracy, +3 (2000 xp)", \
-					"Crossbow of Distance (1500 xp)", \
-					"Crossbow of Speed (1500 xp)", \
-					"Dagger +1, +2 vs. Tiny or Small creatures (300 xp)", \
-					"Dagger +1, +2 vs. Tiny or Small creatures (300 xp)", \
-					"Dagger +2, +3 vs. larger than man–sized creatures (300 xp)", \
-					"Dagger +2, +3 vs. larger than man–sized creatures (300 xp)", \
-					"Dagger +2, Longtooth (300 xp)", \
-					"Dagger of Throwing", \
-					"Dagger of Venom (350 xp)", \
-					"Dart of Homing (450 xp)", \
-					"Hammer +3, Dwarven Thrower (1500 xp)", \
-					"Hammer of Thunderbolts (2500 xp)"]
-			sw2 = ["Hornblade", \
-					"Javelin of Lightning (250 xp)", \
-					"Javelin of Piercing (250 xp)", \
-					"Knife Buckle (150 xp)", \
-					"Knife Buckle (150 xp)", \
-					"Mace of Disruption (2000 xp)", \
-					"Mace of Disruption (2000 xp)", \
-					"Net of Entrapment (1000 xp)", \
-					"Net of Snaring (1000 xp)", \
-					"Quarterstaff Magical (500 xp)", \
-					"Quarterstaff Magical (500 xp)", \
-					"Scimitar of Speed", \
-					"Sling of Seeking +2 (70 xp)", \
-					"Sling of Seeking +2 (70 xp)", \
-					"Spear Cursed Backbiter", \
-					"Trident of Fish Command (50 xp)", \
-					"Trident of Submission (150 xp)", \
-					"Trident of Warning (100 xp)", \
-					"Trident of Yearning"]
-			sw3 = ["Sun Blade (3000 xp)", \
-					"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
-					"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
-					"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
-					"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
-					"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
-					"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
-					"Sword +1, +3 vs. lycanthropes & shape-changers (700 xp)", \
-					"Sword +1, +3 vs. lycanthropes & shape-changers (700 xp)", \
-					"Sword +1, +3 vs. lycanthropes & shape-changers (700 xp)", \
-					"Sword +1, +3 vs. regenerating creatures (800 xp)", \
-					"Sword +1, +3 vs. regenerating creatures (800 xp)", \
-					"Sword +1, +4 vs. reptiles (800 xp)", \
-					"Sword +1, Cursed", \
-					"Sword +1, Cursed", \
-					"Sword +1, Flame Tongue (900 xp)", \
-					"Sword +1, Luck Blade (1000 xp)", \
-					"Sword +2, Dragon Slayer (900 xp)", \
-					"Sword +2, Giant Slayer (900 xp)"]
-			sw4 = ["Sword +2 Nine Lives Stealer (1600 xp)", \
-					"Sword +3 Frost Brand (1600 xp)", \
-					"Sword +3 Frost Brand (1600 xp)", \
-					"Sword +4 Defender (3000 xp)", \
-					"Sword +5 Defender (3600 xp)", \
-					"Sword +5 Holy Avenger (4000 xp)", \
-					"Sword –2 Cursed", \
-					"Sword –2 Cursed", \
-					"Sword of Dancing (4400 xp)", \
-					"Sword of Life Stealing (5000 xp)", \
-					"Sword of Sharpness (7000 xp)", \
-					"Sword of the Planes (2000 xp)", \
-					"Sword of Wounding (4400 xp)", \
-					"Sword Cursed Berserking", \
-					"Sword Cursed Berserking", \
-					"Sword Cursed Berserking", \
-					"Sword Short Quickness (+2) (1000 xp)", \
-					"Sword Short Quickness (+2) (1000 xp)", \
-					"Sword Vorpal Weapon (10000 xp)"]
+			sw1 = ("Arrow of Direction (2500 xp)", \
+								"Arrow of Slaying (250 xp)", \
+								"Axe +2, Throwing (750 xp)", \
+								"Axe of Hurling", \
+								"Bow +1 (500 xp)", \
+								"Bow +1 (500 xp)", \
+								"Crossbow of Accuracy, +3 (2000 xp)", \
+								"Crossbow of Distance (1500 xp)", \
+								"Crossbow of Speed (1500 xp)", \
+								"Dagger +1, +2 vs. Tiny or Small creatures (300 xp)", \
+								"Dagger +1, +2 vs. Tiny or Small creatures (300 xp)", \
+								"Dagger +2, +3 vs. larger than man–sized creatures (300 xp)", \
+								"Dagger +2, +3 vs. larger than man–sized creatures (300 xp)", \
+								"Dagger +2, Longtooth (300 xp)", \
+								"Dagger of Throwing", \
+								"Dagger of Venom (350 xp)", \
+								"Dart of Homing (450 xp)", \
+								"Hammer +3, Dwarven Thrower (1500 xp)", \
+								"Hammer of Thunderbolts (2500 xp)")
+			sw2 = ("Hornblade", \
+								"Javelin of Lightning (250 xp)", \
+								"Javelin of Piercing (250 xp)", \
+								"Knife Buckle (150 xp)", \
+								"Knife Buckle (150 xp)", \
+								"Mace of Disruption (2000 xp)", \
+								"Mace of Disruption (2000 xp)", \
+								"Net of Entrapment (1000 xp)", \
+								"Net of Snaring (1000 xp)", \
+								"Quarterstaff Magical (500 xp)", \
+								"Quarterstaff Magical (500 xp)", \
+								"Scimitar of Speed", \
+								"Sling of Seeking +2 (70 xp)", \
+								"Sling of Seeking +2 (70 xp)", \
+								"Spear Cursed Backbiter", \
+								"Trident of Fish Command (50 xp)", \
+								"Trident of Submission (150 xp)", \
+								"Trident of Warning (100 xp)", \
+								"Trident of Yearning")
+			sw3 = ("Sun Blade (3000 xp)", \
+								"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
+								"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
+								"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
+								"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
+								"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
+								"Sword +1, +2 vs. magic-using & enchanted creatures (600 xp)", \
+								"Sword +1, +3 vs. lycanthropes & shape-changers (700 xp)", \
+								"Sword +1, +3 vs. lycanthropes & shape-changers (700 xp)", \
+								"Sword +1, +3 vs. lycanthropes & shape-changers (700 xp)", \
+								"Sword +1, +3 vs. regenerating creatures (800 xp)", \
+								"Sword +1, +3 vs. regenerating creatures (800 xp)", \
+								"Sword +1, +4 vs. reptiles (800 xp)", \
+								"Sword +1, Cursed", \
+								"Sword +1, Cursed", \
+								"Sword +1, Flame Tongue (900 xp)", \
+								"Sword +1, Luck Blade (1000 xp)", \
+								"Sword +2, Dragon Slayer (900 xp)", \
+								"Sword +2, Giant Slayer (900 xp)")
+			sw4 = ("Sword +2 Nine Lives Stealer (1600 xp)", \
+								"Sword +3 Frost Brand (1600 xp)", \
+								"Sword +3 Frost Brand (1600 xp)", \
+								"Sword +4 Defender (3000 xp)", \
+								"Sword +5 Defender (3600 xp)", \
+								"Sword +5 Holy Avenger (4000 xp)", \
+								"Sword –2 Cursed", \
+								"Sword –2 Cursed", \
+								"Sword of Dancing (4400 xp)", \
+								"Sword of Life Stealing (5000 xp)", \
+								"Sword of Sharpness (7000 xp)", \
+								"Sword of the Planes (2000 xp)", \
+								"Sword of Wounding (4400 xp)", \
+								"Sword Cursed Berserking", \
+								"Sword Cursed Berserking", \
+								"Sword Cursed Berserking", \
+								"Sword Short Quickness (+2) (1000 xp)", \
+								"Sword Short Quickness (+2) (1000 xp)", \
+								"Sword Vorpal Weapon (10000 xp)")
 			if d10 == 1 or d10 == 2 or d10 == 3:
 				out += random.choice(sw1)
 			elif d10 == 4 or d10 == 5 or d10 == 6:
@@ -1645,18 +1645,18 @@ def treasure_gen():
 # hunting
 def hunting(climate, terrain, season):
 	# map -> biome -> terrain -> season
-	huntmap = [
-		[[5,5,10,5],[5,5,10,10],[5,5,10,10],[5,5,5,5],[5,10,10,5],[5,10,10,5],[5,10,10,5]], # arctic
-		[[5,10,10,5],[5,10,10,5],[5,10,15,15],[5,5,10,5],[5,10,15,15],[5,15,20,20],[5,10,15,10]], # subarctic
-		[[10,5,5,10],[30,50,50,50],[25,50,50,50],[15,30,30,30],[25,40,50,50],[20,40,50,50],[20,35,50,50]], # temperate
-		[[10,5,5,5],[50,50,50,50],[50,50,50,50],[35,35,35,35],[50,50,50,50],[50,50,50,50],[40,50,50,50]], # subtropical
-		[[5,5,5,5],[50,50,50,50],[50,50,50,50],[40,40,40,40],[50,50,50,50],[50,50,50,50],[50,50,50,50]]  # tropical
-	]
+	huntmap = (
+		((5,5,10,5),(5,5,10,10),(5,5,10,10),(5,5,5,5),(5,10,10,5),(5,10,10,5),(5,10,10,5)), # arctic
+		((5,10,10,5),(5,10,10,5),(5,10,15,15),(5,5,10,5),(5,10,15,15),(5,15,20,20),(5,10,15,10)), # subarctic
+		((10,5,5,10),(30,50,50,50),(25,50,50,50),(15,30,30,30),(25,40,50,50),(20,40,50,50),(20,35,50,50)), # temperate
+		((10,5,5,5),(50,50,50,50),(50,50,50,50),(35,35,35,35),(50,50,50,50),(50,50,50,50),(40,50,50,50)), # subtropical
+		((5,5,5,5),(50,50,50,50),(50,50,50,50),(40,40,40,40),(50,50,50,50),(50,50,50,50),(50,50,50,50))  # tropical
+	)
 
-	climates = ['arctic', 'subarctic', 'temperate', 'subtropical', 'tropical']
-	terrains = ['desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp']
-	seasons = ['winter', 'spring', 'summer', 'fall']
-	
+	climates = ('arctic', 'subarctic', 'temperate', 'subtropical', 'tropical')
+	terrains = ('desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp')
+	seasons = ('winter', 'spring', 'summer', 'fall')
+
 	climate = climates.index(climate)
 	terrain = terrains.index(terrain)
 	season = seasons.index(season)
@@ -1714,20 +1714,20 @@ def fish(climate, terrain, season):
 
 # foraging chance
 def forage(climate, terrain, season):
-	foragemap = [
-	[[0,5,10,0],[5,10,10,5],[5,10,10,5],[0,0,5,0],[5,5,10,5],[10,10,15,10],[10,10,15,10]],
-	[[0,5,15,5],[70,85,100,75],[20,30,40,25],[10,15,20,15],[20,30,50,25],[25,35,50,35],[15,20,30,50]],
-	[[10,5,5,5],[80,90,100,90],[65,75,90,80],[20,30,40,30],[50,60,75,60],[50,65,80,65],[30,35,40,35]],
-	[[5,5,0,5],[90,100,100,100],[80,90,100,95],[40,55,75,60],[80,90,100,100],[80,90,100,95],[40,50,50,50]],
-	[[5,5,0,5],[100,100,100,100],[90,100,100,95],[85,90,90,90],[100,100,100,100],[90,95,100,95],[50,60,70,60]]
-	]
-	ediblemap = [
-	[[0,75,75,0],[75,60,60,50],[75,60,60,50],[0,0,50,0],[50,50,50,50],[75,70,70,75],[75,70,70,75]],
-	[[0,50,50,75],[40,40,50,40],[50,50,40,50],[50,50,40,50],[40,4,40,50],[60,50,40,50],[60,60,60,50]],
-	[[70,50,70,50],[40,40,40,40],[50,40,35,50],[40,40,40,50],[40,40,30,50],[50,40,40,50],[60,50,50,60]],
-	[[75,80,0,75],[30,30,30,30],[30,30,25,25],[40,30,30,40],[30,30,30,35],[40,40,40,40],[60,50,50,60]],
-	[[75,80,0,75],[30,30,40,30],[30,40,40,35],[30,30,40,35],[30,45,50,40],[40,50,50,50],[60,60,50,60]]
-	]
+	foragemap = (
+	((0,5,10,0),(5,10,10,5),(5,10,10,5),(0,0,5,0),(5,5,10,5),(10,10,15,10),(10,10,15,10)),
+	((0,5,15,5),(70,85,100,75),(20,30,40,25),(10,15,20,15),(20,30,50,25),(25,35,50,35),(15,20,30,50)),
+	((10,5,5,5),(80,90,100,90),(65,75,90,80),(20,30,40,30),(50,60,75,60),(50,65,80,65),(30,35,40,35)),
+	((5,5,0,5),(90,100,100,100),(80,90,100,95),(40,55,75,60),(80,90,100,100),(80,90,100,95),(40,50,50,50)),
+	((5,5,0,5),(100,100,100,100),(90,100,100,95),(85,90,90,90),(100,100,100,100),(90,95,100,95),(50,60,70,60))
+	)
+	ediblemap = (
+	((0,75,75,0),(75,60,60,50),(75,60,60,50),(0,0,50,0),(50,50,50,50),(75,70,70,75),(75,70,70,75)),
+	((0,50,50,75),(40,40,50,40),(50,50,40,50),(50,50,40,50),(40,4,40,50),(60,50,40,50),(60,60,60,50)),
+	((70,50,70,50),(40,40,40,40),(50,40,35,50),(40,40,40,50),(40,40,30,50),(50,40,40,50),(60,50,50,60)),
+	((75,80,0,75),(30,30,30,30),(30,30,25,25),(40,30,30,40),(30,30,30,35),(40,40,40,40),(60,50,50,60)),
+	((75,80,0,75),(30,30,40,30),(30,40,40,35),(30,30,40,35),(30,45,50,40),(40,50,50,50),(60,60,50,60))
+	)
 	# the forage map is the percent chance that a normal character foraging 
 	# for 2 turns will find one full day's ration of plant life (2 lbs)
 	# the edible map is the percent chance that what they find is 
@@ -1735,9 +1735,9 @@ def forage(climate, terrain, season):
 	# with proficiency in foraging, they find 4 lbs of food
 	# and the chance of inedible is 20% less
 	
-	climates = ['arctic', 'subarctic', 'temperate', 'subtropical', 'tropical']
-	terrains = ['desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp']
-	seasons = ['winter', 'spring', 'summer', 'fall']
+	climates = ('arctic', 'subarctic', 'temperate', 'subtropical', 'tropical')
+	terrains = ('desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp')
+	seasons = ('winter', 'spring', 'summer', 'fall')
 	
 	climate = climates.index(climate)
 	terrain = terrains.index(terrain)
@@ -1762,31 +1762,31 @@ def forage(climate, terrain, season):
 			profediblefood = "edible"
 
 	if ediblefood == 'None':
-		foodproblem = random.choice(['poisonous','poisonous','spoiled','tainted','spoiled','not nutritious','not nutritious','not nutritious','not nutritious'])
+		foodproblem = random.choice(('poisonous','poisonous','spoiled','tainted','spoiled','not nutritious','not nutritious','not nutritious','not nutritious'))
 
 	return([foundfood, ediblefood, profediblefood, foodproblem])
 
 # finding water chance
 def water(climate, terrain, season):
-	watermap = [
-	[[5,5,5,5],[10,10,10,10],[10,10,10,10],[5,5,5,5],[10,10,10,10],[10,10,10,10],[10,10,10,10]],
-	[[5,10,10,5],[10,20,20,10],[5,10,15,10],[5,20,15,10],[10,20,20,15],[40,60,50,50],[40,60,50,50]],
-	[[5,5,5,5],[30,40,30,30],[30,40,40,30],[20,20,15,20],[20,40,40,30],[60,70,80,60],[60,70,80,60]],
-	[[5,5,5,5],[60,70,70,60],[30,50,50,40],[40,60,50,40],[20,40,30,20],[70,80,90,70],[70,80,90,70]],
-	[[5,10,5,5],[80,80,80,80],[15,20,30,15],[40,70,60,70],[20,50,60,50],[70,90,90,80],[70,90,90,80]]
-	]
-	undrinkablemap = [
-	[[50,50,50,50],[50,50,50,50],[50,50,50,50],[30,30,30,30],[50,50,50,50],[50,50,50,50],[50,50,50,50]],
-	[[60,60,60,60],[40,40,50,40],[40,40,50,40],[30,30,30,30],[50,50,50,50],[60,60,60,60],[60,60,60,60]],
-	[[70,70,70,80],[30,30,30,30],[40,40,50,40],[30,30,30,30],[5,50,5,50],[70,70,80,70],[70,70,80,70]],
-	[[70,70,80,80],[40,50,60,50],[40,40,40,40],[30,40,50,40],[50,40,40,50],[70,70,80,80],[70,70,80,80]],
-	[[70,70,80,80],[50,60,70,60],[40,40,50,40],[30,30,40,40],[50,50,60,50],[70,75,80,80],[70,75,80,80]]
-	]
+	watermap = (
+	((5,5,5,5),(10,10,10,10),(10,10,10,10),(5,5,5,5),(10,10,10,10),(10,10,10,10),(10,10,10,10)),
+	((5,10,10,5),(10,20,20,10),(5,10,15,10),(5,20,15,10),(10,20,20,15),(40,60,50,50),(40,60,50,50)),
+	((5,5,5,5),(30,40,30,30),(30,40,40,30),(20,20,15,20),(20,40,40,30),(60,70,80,60),(60,70,80,60)),
+	((5,5,5,5),(60,70,70,60),(30,50,50,40),(40,60,50,40),(20,40,30,20),(70,80,90,70),(70,80,90,70)),
+	((5,10,5,5),(80,80,80,80),(15,20,30,15),(40,70,60,70),(20,50,60,50),(70,90,90,80),(70,90,90,80))
+	)
+	undrinkablemap = (
+	((50,50,50,50),(50,50,50,50),(50,50,50,50),(30,30,30,30),(50,50,50,50),(50,50,50,50),(50,50,50,50)),
+	((60,60,60,60),(40,40,50,40),(40,40,50,40),(30,30,30,30),(50,50,50,50),(60,60,60,60),(60,60,60,60)),
+	((70,70,70,80),(30,30,30,30),(40,40,50,40),(30,30,30,30),(5,50,5,50),(70,70,80,70),(70,70,80,70)),
+	((70,70,80,80),(40,50,60,50),(40,40,40,40),(30,40,50,40),(50,40,40,50),(70,70,80,80),(70,70,80,80)),
+	((70,70,80,80),(50,60,70,60),(40,40,50,40),(30,30,40,40),(50,50,60,50),(70,75,80,80),(70,75,80,80))
+	)
 
 	
-	climates = ['arctic', 'subarctic', 'temperate', 'subtropical', 'tropical']
-	terrains = ['desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp']
-	seasons = ['winter', 'spring', 'summer', 'fall']
+	climates = ('arctic', 'subarctic', 'temperate', 'subtropical', 'tropical')
+	terrains = ('desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp')
+	seasons = ('winter', 'spring', 'summer', 'fall')
 	
 	climate = climates.index(climate)
 	terrain = terrains.index(terrain)
@@ -1804,19 +1804,19 @@ def water(climate, terrain, season):
 
 # chance of finding natural shelter
 def naturalshelter(climate, terrain, season):
-	sheltermap = [
-	[20,20,20,20],
-	[90,100,100,100],
-	[40,60,70,60],
-	[40,40,40,40],
-	[30,40,40,30],
-	[40,50,50,40],
-	[40,50,50,40]
-	]
+	sheltermap = (
+	(20,20,20,20),
+	(90,100,100,100),
+	(40,60,70,60),
+	(40,40,40,40),
+	(30,40,40,30),
+	(40,50,50,40),
+	(40,50,50,40)
+	)
 
 	
-	terrains = ['desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp']
-	seasons = ['winter', 'spring', 'summer', 'fall']
+	terrains = ('desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp')
+	seasons = ('winter', 'spring', 'summer', 'fall')
 	
 	terrain = terrains.index(terrain)
 	season = seasons.index(season)
@@ -1830,28 +1830,28 @@ def naturalshelter(climate, terrain, season):
 
 # chance of finding medicinal plants
 def medicinalplant(climate, terrain, season):
-	medicinalmap = [
-	[[0,5,10,0],[5,10,10,5],[5,10,10,5],[0,0,5,0],[5,5,10,5],[10,10,15,10],[10,10,15,10]],
-	[[0,5,15,5],[70,85,100,75],[20,30,40,25],[10,15,20,15],[20,30,50,30],[25,35,50,35],[15,20,30,20]],
-	[[10,5,5,5],[80,90,100,90],[65,75,90,80],[20,30,40,30],[50,60,75,60],[50,65,80,65],[30,35,40,35]],
-	[[5,5,0,5],[90,100,100,100],[80,90,100,95],[40,55,75,60],[80,90,100,100],[80,90,100,95],[40,50,50,50]],
-	[[5,5,0,5],[100,100,100,100],[90,100,100,95],[85,90,90,90],[100,100,100,100],[90,95,100,95],[50,60,70,60]]
-	]
-	usablemap = [
-	[[0,10,10,0],[10,10,10,10],[10,10,10,10],[0,0,20,0],[20,20,20,20],[10,20,20,10],[10,20,20,10]],
-	[[0,10,10,10],[30,30,20,30],[20,20,30,20],[20,20,30,20],[20,30,30,20],[10,20,30,20],[10,10,10,20]],
-	[[10,10,10,20],[30,30,30,30],[20,30,40,20],[20,30,30,20],[20,30,40,20],[20,30,30,20],[10,20,20,10]],
-	[[10,10,0,10],[40,40,40,40],[40,40,50,50],[30,40,40,30],[40,40,40,40],[30,30,30,30],[10,20,20,10]],
-	[[10,10,0,10],[40,40,30,40],[30,30,30,30],[40,40,30,40],[40,40,40,30],[30,40,40,30],[10,10,20,10]]
-	]
+	medicinalmap = (
+	((0,5,10,0),(5,10,10,5),(5,10,10,5),(0,0,5,0),(5,5,10,5),(10,10,15,10),(10,10,15,10)),
+	((0,5,15,5),(70,85,100,75),(20,30,40,25),(10,15,20,15),(20,30,50,30),(25,35,50,35),(15,20,30,20)),
+	((10,5,5,5),(80,90,100,90),(65,75,90,80),(20,30,40,30),(50,60,75,60),(50,65,80,65),(30,35,40,35)),
+	((5,5,0,5),(90,100,100,100),(80,90,100,95),(40,55,75,60),(80,90,100,100),(80,90,100,95),(40,50,50,50)),
+	((5,5,0,5),(100,100,100,100),(90,100,100,95),(85,90,90,90),(100,100,100,100),(90,95,100,95),(50,60,70,60))
+	)
+	usablemap = (
+	((0,10,10,0),(10,10,10,10),(10,10,10,10),(0,0,20,0),(20,20,20,20),(10,20,20,10),(10,20,20,10)),
+	((0,10,10,10),(30,30,20,30),(20,20,30,20),(20,20,30,20),(20,30,30,20),(10,20,30,20),(10,10,10,20)),
+	((10,10,10,20),(30,30,30,30),(20,30,40,20),(20,30,30,20),(20,30,40,20),(20,30,30,20),(10,20,20,10)),
+	((10,10,0,10),(40,40,40,40),(40,40,50,50),(30,40,40,30),(40,40,40,40),(30,30,30,30),(10,20,20,10)),
+	((10,10,0,10),(40,40,30,40),(30,30,30,30),(40,40,30,40),(40,40,40,30),(30,40,40,30),(10,10,20,10))
+	)
 
 	# medicinal map is the chance of there being vegetation to search in
 	# usable map is the chance of finding the plant
 
 	
-	climates = ['arctic', 'subarctic', 'temperate', 'subtropical', 'tropical']
-	terrains = ['desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp']
-	seasons = ['winter', 'spring', 'summer', 'fall']
+	climates = ('arctic', 'subarctic', 'temperate', 'subtropical', 'tropical')
+	terrains = ('desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp')
+	seasons = ('winter', 'spring', 'summer', 'fall')
 	
 	climate = climates.index(climate)
 	terrain = terrains.index(terrain)
@@ -1874,29 +1874,29 @@ def medicinalplant(climate, terrain, season):
 
 # availability of fuel
 def fuel(climate, terrain, season):
-	fuelmap = [
-	[20,20,20,20],
-	[70,100,100,100],
-	[40,70,70,60],
-	[20,30,40,40],
-	[50,70,80,70],
-	[40,30,30,40],
-	[40,30,30,40]
-	]
-	climatemodmap = [
-	[-20,-10,0,-10,-20],
-	[-100,-30,0,30,30],
-	[-30,-20,0,10,20],
-	[-40,-30,0,20,30],
-	[-60,-40,0,20,20],
-	[-40,-20,0,10,20],
-	[-40,-20,0,10,20]
-	]
+	fuelmap = (
+	(20,20,20,20),
+	(70,100,100,100),
+	(40,70,70,60),
+	(20,30,40,40),
+	(50,70,80,70),
+	(40,30,30,40),
+	(40,30,30,40)
+	)
+	climatemodmap = (
+	(-20,-10,0,-10,-20),
+	(-100,-30,0,30,30),
+	(-30,-20,0,10,20),
+	(-40,-30,0,20,30),
+	(-60,-40,0,20,20),
+	(-40,-20,0,10,20),
+	(-40,-20,0,10,20)
+	)
 
 	
-	climates = ['arctic', 'subarctic', 'temperate', 'subtropical', 'tropical']
-	terrains = ['desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp']
-	seasons = ['winter', 'spring', 'summer', 'fall']
+	climates = ('arctic', 'subarctic', 'temperate', 'subtropical', 'tropical')
+	terrains = ('desert', 'forest', 'hills', 'mountains', 'plains', 'coast', 'swamp')
+	seasons = ('winter', 'spring', 'summer', 'fall')
 	
 	climate = climates.index(climate)
 	terrain = terrains.index(terrain)
@@ -2139,13 +2139,13 @@ def daylight(day,climate):
 	climates = ['arctic', 'subarctic', 'temperate', 'subtropical', 'tropical']
 	c = climates.index(climate)
 
-	daylightmap = [
-	[7.5, 21.5, 23.5, 24, 24, 22, 17.5, 4.5, 1, 0, 0, 2.5], # arctic
-	[11.5, 14.5, 17.5, 19.5, 18, 16, 13, 10, 7, 5.5, 5.5, 9], # subarctic
-	[12, 13, 14.5, 15.5, 14.5, 14, 12.5, 11, 9.5, 9, 9.5, 10.5], # temperate
-	[12, 12.5, 13, 13.5, 13.5, 13, 12, 11.5, 11, 10.5, 11, 11.5], # subtropical
-	[12, 12.5, 12.5, 12.5, 12.5, 12.5, 12, 12, 11.5, 11.5, 11.5, 12] # tropical
-	]
+	daylightmap = (
+	(7.5, 21.5, 23.5, 24, 24, 22, 17.5, 4.5, 1, 0, 0, 2.5), # arctic
+	(11.5, 14.5, 17.5, 19.5, 18, 16, 13, 10, 7, 5.5, 5.5, 9), # subarctic
+	(12, 13, 14.5, 15.5, 14.5, 14, 12.5, 11, 9.5, 9, 9.5, 10.5), # temperate
+	(12, 12.5, 13, 13.5, 13.5, 13, 12, 11.5, 11, 10.5, 11, 11.5), # subtropical
+	(12, 12.5, 12.5, 12.5, 12.5, 12.5, 12, 12, 11.5, 11.5, 11.5, 12) # tropical
+	)
 
 	# get the month from the day
 	month = int(day)%360/30
