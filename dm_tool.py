@@ -6,7 +6,7 @@ from rich.panel import Panel
 from rich.columns import Columns
 
 import random
-import os
+from os import system, listdir
 
 def read_players():
 	pass
@@ -58,11 +58,11 @@ def save_config(weather_file, climate, terrain, season, day,save_name):
 
 
 # ask for the file
-os.system("mode con lines=36 cols=150")
-os.system('cls')
+system("mode con lines=36 cols=150")
+system('cls')
 
 print('Save Files')
-save_files = os.listdir('./saves/')
+save_files = listdir('./saves/')
 print('')
 for i in save_files:
 	if '_config' in i:
@@ -95,7 +95,7 @@ if save == "":
 	# each element of the food list is a list itself containing:
 	# food name, food type, days old, condition
 	print('Here are the weather files you can choose from:')
-	weather_files = os.listdir('./weather/')
+	weather_files = listdir('./weather/')
 	print('')
 	i_of_f = 0
 	for i in weather_files:
@@ -1636,7 +1636,7 @@ def treasure_gen():
 			for i in range(0,3):
 				o += magic(random.randint(1,100))
 	
-	os.system('cls')
+	system('cls')
 	print(" == Loot == ")
 	print(o)
 	print("\n")
@@ -1940,7 +1940,7 @@ def plants(climate, terrain, season):
 	plantslist = plantslist.split(", ")
 	#print(plantslist)
 	if len(plantslist) < 21:
-		os.system('cls')
+		system('cls')
 		print("┌────────────────────────────────┬──────────────────────────────────────────────────────────────┬──────┐")
 		print("│ herb                           │ use                                                          │ enc. │")
 		print("├────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────┤")
@@ -1965,7 +1965,7 @@ def plants(climate, terrain, season):
 	else:
 		step = 20
 		for i in range(0,len(plantslist),step):
-			os.system('cls')
+			system('cls')
 			a = i
 			sub_plantslist = plantslist[a:a+step]
 			print("┌────────────────────────────────┬──────────────────────────────────────────────────────────────┬──────┐")
@@ -1990,7 +1990,57 @@ def plants(climate, terrain, season):
 			print("└────────────────────────────────┴──────────────────────────────────────────────────────────────┴──────┘")
 			x = input('press Enter to continue')
 
-
+# display the rules for special combat options
+def attack_options():
+	system('cls')
+	print('')
+	print('┌─────────────┬────────────────┐')
+	print('│ Block       │ Sap            │')
+	print('├─────────────┼────────────────┤')
+	print('│ Called Shot │ Shield-punch   │')
+	print('├─────────────┼────────────────┤')
+	print('│ Disarm      │ Shield-rush    │')
+	print('├─────────────┼────────────────┤')
+	print('│ Grab        │ Trap           │')
+	print('├─────────────┼────────────────┤')
+	print('│ Overbear    │ Trap and Break │')
+	print('├─────────────┼────────────────┤')
+	print('│ Pin         │ Unarmed Attack │')
+	print('├─────────────┼────────────────┤')
+	print('│ Pull/Trip   │ Unhorse        │')
+	print('└─────────────┴────────────────┘')
+	print('')
+	x = input('what special attack: ')
+	print('')
+	if x == "block" or x == "Block" or x =="b":
+		print("A character can declare that she is using one of her attacks to block an opponent's strike. Blocking is a hard parry with a weapon that deflects an opponent's attack. Any weapon except rope-like things such as nets, lassoes, or slings can be used to block.\n\nWhen a character tries to block an attack, she makes a normal attack roll against AC 4. Her opponent makes a normal attack roll against her Armor Class. The strike is blocked if the character succeeds with a lower roll than her enemy succeeded with. If the attacker failed anyway, it's a miss no matter what the blocking character rolled. If the blocking character failed but her attacker succeeded, it's a hit despite the block attempt. If the character announces her block before initiative is rolled, she can block an attack even if it beats her action phase. If she decides to wait, she can only block attacks in her action phase or later.\n\nBlocking is an excellent tactic for characters with multiple attacks to use against characters or monsters with only one attack. A rapier specialist with a main-gauche in her off hand can use her off-hand weapon or one of the rapier attacks to block while using the rest of her attacks offensively.")
+	elif x == "called shot" or x == "called" or x == "cs" or x == "c s" or x == "Called Shot" or x == "Called":
+		print("A called shot is an attack at a specific location on the target. For example, a called shot can be used to attack the head of an enemy who isn't wearing a helm, the unarmored legs of a character wearing only a breastplate, or the special weakness of a monster with an Achilles' heel.\n\nCalled shots have to be announced before the attack roll is made. When the called shot is announced, the character's action phase is delayed by one category; a bowshot that would normally be in the average phase becomes a slow action if the archer decides to make a called shot. If you're not playing with the initiative system described in Chapter One, assume called shots receive a +1 initiative penalty.\n\nCalled shots normally present the attacker with a\n - 4 penalty on his attack roll, but the DM can modify this for the circumstances. If the target is surprised or not expecting the attack, the called shot modifier may not apply at all. On the other hand, a particularly difficult called shot (stabbing an enemy through the eyeslit of his visor, for example) may inflict a\n - 6 or even a\n - 8 penalty to the attack roll. Called shots are disrupted if the character attempting it suffers a knockdown.\n\nAlthough called shots are normally most useful for special combat effects, like breaking a beaker of acid in an evil wizard's hand, they can also be useful against partially unarmored opponents. An enemy in full plate mail with no helmet has an AC 10 head; it's easier to make the called shot with a\n - 4 penalty against that AC 10 than to swing at the enemy's normal AC of 1. If a called shot is used to strike a specific body area and results in a critical hit, ignore the location die of the critical hit roll and just roll the effect for the area struck. (See Chapter Six for more information on critical hits.)\n\nCalled shots can also be used to fire missile weapons into a melee without the risk of hitting an ally. If the called shot misses, no one else is in danger of being hit by the missile.\n\nAs an optional rule, the DM may allow called shots to be used to force an automatic retreat or knockdown effect, rather than inflict damage.")
+	elif x == "disarm" or x == "Disarm" or x == "d":
+		print("There are two types of disarming maneuvers, offensive and defensive, and they both work essentially the same way. A character who wishes to use either type of disarm must allocate one of his attacks for the round to the feat. If the disarm is a defensive one, it is resolved before the attacker rolls to hit. A disarm works very much like a block, but the character attempting the disarm must roll against AC 0, while the intended victim of the disarm still rolls against an AC 4.\n\nAnyone involved in a disarm that is using a two-handed weapon receives a 4-point bonus to the target Armor Class for the purposes of the opposed roll. It's impossible to disarm a weapon two sizes larger than your own, so a fighter with a dagger can't try to disarm a mage with a quarterstaff. Disarming can occur using a missile weapon, but the missile's size is the factor used to determine whether or not the attempt can succeed, not the weapon firing the missile.\n\nDefensive disarms work just like blocks for initiative; if announced before the roll, they can be attempted against attacks that beat the character's action phase. Otherwise, they can only be used on the character's action phase or later in the round. Offensive disarms work like called shots; when announced, they delay the character's action phase by one step. The intent to disarm has to be announced before any rolls are made.\n\nWhen a weapon is disarmed, it falls 1-10 feet away ( I d 3\n - 1 squares) in a random direction. Recovering a disarmed weapon requires a half-move. A disarmed character can be immediately covered if the attacker has an attack remaining in the round. Disarms work best against low-level opponents who don't have good THACOs, since it's difficult for them to make their opposed rolls.")
+	elif x == "grab" or x == "Grab" or x == "g":
+		print("Characters can grab weapons or important items away from their opponents. If the character wants to grab his opponent directly, he should consider it a wrestling attack and resolve it as unarmed combat; see Chapter Five. A character has to have a hand free to grab; if both hands are full, he's got to drop something in order to attempt the grab. (Two-handed weapons can be held in just one hand, but the character can't attack this way.) The attacker must announce the grab attempt before he makes his attack roll.\n\nTrying to grab an enemy's possessions while he threatens you is a bad idea; the defender receives an immediate attack of opportunity against the grabber.\n\nGenerally, the grab attempt works the same way a disarm attempt does. The character attempting to grab an item must make an opposed roll against AC 0 while the intended victim rolls against AC 4. The DM may assign certain penalties to the character attempting the grab, depending on circumstances; grabbing a tiny ring on someone's finger might incur a\n - 8 penalty to the target Armor Class for the grabbing character. If the opposed roll results in a tie, the item may be dropped or broken at the DM's discretion.\n\nOnce the grabbing character succeeds in grasping the item, the opponents must wrestle for control of it using opposed Strength checks. If a character only grabs (or was originally holding) the item with one hand, then his Strength is reduced by 3 points")
+	elif x == "overbear" or x == "over" or x == "Over" or x == "Overbear" or x == "o" or x == "ob":
+		print("Overbearing includes most attacks aimed at simply overpowering the target. If the attackers are seeking to overwhelm the defender through brute strength or sheer weight of numbers, it's an overbearing attack.\n\nOverbearing includes most attacks aimed at simply overpowering the target. If the attackers are seeking to overwhelm the defender through brute strength or sheer weight of numbers, it's an overbearing attack.\n\nOverbearing is a tactic available to any creature and can be used against almost any other creature. Creatures with multiple legs are difficult to overbear. Creatures with no legs at all are nearly impossible to overbear (because they can't be knocked down) but attackers with sufficient strength sometimes can pin them in place. Creatures with no solid form (immaterial, gaseous, or liquid) cannot be overborne. Characters need not have their hands free to make overbearing attacks, but they might not be able to take full advantage of pins if they do not (see below). \n - 4-point bonus or penalty per size difference of the attacker and defender \n - +1 bonus per additional attacker \n - -4 penalty if defender has more than two legs \n - -4 penalty if the defender is legless \n - -8 penalty if the defender is amorphous and legless\n\nIf the defender wins the opposed Strength roll, she stays on her feet and the attackers remain in their squares. The defender remains clear and can finish the round normally. If the attackers win, they (or as many as will fit) enter the defender's square and everyone falls in a heap with the attackers on top. The overborne character takes no damage. Note that attackers in squares adjacent to the defender can contribute to overbearing attacks even if they can't enter the defender's square.\n\nIf defender is overborne, she loses all actions for the remainder of the round and her actions are severely limited the next round; the character is grappled and cannot move or make any attacks (including attacks of opportunity) until she gets free.\n\nA defender who has been knocked down by an overbearing attack can be pinned if she is successfully overborne again in the following round. Overborne defenders can do nothing until the pin is resolved.")
+	elif x == 'p' or x == 'pin' or x == "Pin":
+		print("Attackers who have made successful overbearing attacks have an advantage over the defender in the following round. The attackers can release the opponent or try for a pin. If the attackers release the opponent, they can immediately attempt another unarmed attack, draw a weapon and attack (this counts as a half-move action), or attempt some other action normally available to characters, such as movement. If the attackers try for a pin, conduct another opposed Strength roll. If the attackers win, the opponent is pinned (see below). If the defender wins, the attackers must leave the defender's square and the defender can spend a half move or an attack to stand up, just as if she had suffered a knockdown.\n\nAttackers who have made successful overbearing attacks have an advantage over the defender in the following round. The attackers can release the opponent or try for a pin. If the attackers release the opponent, they can immediately attempt another unarmed attack, draw a weapon and attack (this counts as a half-move action), or attempt some other action normally available to characters, such as movement. If the attackers try for a pin, conduct another opposed Strength roll. If the attackers win, the opponent is pinned (see below). If the defender wins, the attackers must leave the defender's square and the defender can spend a half move or an attack to stand up, just as if she had suffered a knockdown.\n\nEffects of Pins A pin lasts for an entire combat round. A pinned character is considered prone and grappled. The attackers can immobilize a pinned character's limbs if their hands are free. If the attackers are the same size or larger than the defender, one of the defender's limbs is immobilized and useless for every attacker with free hands in the pile. If the attackers are smaller, it takes one extra creature per size class difference to immobilize a limb. For example, it takes one human to hold down an ore's arm, two humans to hold down an ogre's arm, and three humans to hold down a hill giant's arm. If the attackers are larger, they can pin two limbs for every two size classes difference. For example, a single ogre can pin one limb of a dwarf or two of a halfling's limbs. If all the defender's limbs are immobilized for two consecutive rounds, the attackers have the upper hand and can choose any wrestling lock effect. (Damage from locks achieved through an overbearing pin is mostly temporary, as in all other forms of brawling combat.) A group that achieves a lock inflicts damage only once per round, but uses its effective group Strength score when determining damage.\n\nMaintaining and Breaking Pins A pinned creature can make unarmed or natural attacks with its free limbs or can attack with a size S weapon. The pinned character's original facing does not affect these attacks; all the characters involved are entangled in a random dogpile and the defender is assumed to be facing all the attackers simultaneously—this is one disadvantage to overbearing attacks. If the defender inflicts a critical hit with a weapon or natural attack, he can opt to inflict double damage (or roll for a special effect according to the rules presented in Chapter Six) or force the attacker who is struck to release her. If the defender scores a knockdown with a pummeling or weapon attack, the attacker who is struck must release the defender. The attacker cannot directly counter the pin, she must wait until the attackers try to maintain the pin. Attackers who have pinned a defender must make an opposed Strength roll each round to maintain the pin. If a pinned defender wins the opposed Strength roll, she breaks the pin and can spend a half move or an attack to stand up. She is still grappled, however. If the defender wins the next opposed Strength roll, she breaks free. If the defender wins initiative, she can force the roll herself on her attack phase; this is the only time a defender can initiate the opposed roll, which can be either an attack or a Strength roll, at the defender's option. If the defender loses or there is a tie, the defender remains grappled and the attackers can skip the attack roll and go directly to the opposed Strength roll on their next action phase. If the defender wins, she breaks free and can finish the round normally.\n\nAssistance Overbearing involves brute force and is the natural attack form for groups of creatures confronting a lone target. In the case of multiple defenders, the attackers can divide themselves among their opponents or concentrate on a single defender, provided that the attackers occupy squares adjacent to the defender. The defender's allies, if clear, can remove attackers from the pile by making overbearing or wrestling attacks against them. An ally who threatens the attackers can make attacks of opportunity each time the attackers initiate an opposed roll—the arrival of an armed ally usually breaks up a massed overbearing attack. A critical hit or knockdown can force an attacker to release a defender, as described above. Missile attacks directed at a pile have a chance to hit any character in the pile as described in Chapter One.")
+	elif x == "pull" or x == "Pull" or x == "t" or x == "trip" or x =="Trip" or x == "pull/trip" or x == "pt" or x == "p/t" or x == "p t":
+		print("A good tactic against moving enemies or characters who aren't paying attention is a trip or tangling maneuver. To pull or trip an opponent, the character must be armed with a weapon that has the ability to snare someone's legs. The following weapons all qualify: bill, bola, bow, light or heavy crossbow, horseman's flail, harpoon, javelin, khopesh, lasso, mancatcher, net, footman's or horseman's pick, any polearm, quarterstaff, scourge, spear, staff sling, and whip. These weapons feature long, staff-like pieces, chains or ropes, or heads that can catch and pull an enemy's legs out from under him.\n\nTo pull or trip an enemy, the character makes a normal attack roll. If he hits, he makes an opposed roll of his Strength against the defender's Dexterity or Strength, whichever is better. If the attacker wins, the defender is knocked down. If the defender wins or if both fail, the attack fails. If the roll is a tie, they both fall down.\n\nFor purposes of this maneuver, a monster's normal movement rate can be considered its Dexterity score. Its Strength is equal to 314 points per size plus its Hit Dice. There are several modifiers that apply to the attacker's Strength, however: \n - 4-point bonus or penalty per size difference \n - -2 to attacker's strength if the target has four legs or more \n - +3 if the defender was unaware of the pull or trip attack \n - -6 if the defender was stationary\n\nOptionally, the opposed roll can be replaced by a simple saving throw vs. paralyzation. It's not as accurate, but it may be more convenient for the DM and players to remember.")
+	elif x == "sap" or x == "Sap" or x == "s":
+		print("Sapping is an attempt to knock out an opponent by striking with the flat of the blade or slugging him from behind with a sturdy sword-hilt. It doesn't work very well against characters or monsters that are expecting it; any character attempting to sap a creature that threatens her provokes an attack of opportunity for the defender. Hand-held weapons and thrown weapons may be used in sap attempts.\n\nA sap is a type of called shot; it has a one-phase initiative penalty, and the attacker has a\n - 4 penalty to hit The penalty increases to\n - 8 if the defender is wearing some kind of helmet. Only Small or Medium creatures can be sapped; Large monsters can't be knocked out like this.\n\nIf the attacker scores a hit, she may knock out her opponent. There is a 5% chance per point of damage of knocking out the victim, up to a maximum of 40%. Thus, if the sapper inflicts 5 points of damage, she has a 25% chance of knocking out her opponent. Sapping damage is like unarmed combat damage; 25% is real and the rest is temporary. Naturally, if her damage roll exceeds the victim's hit points, he's knocked out anyway.\n\nThe knockout chance increases to 10% per point of damage (max 80%) if the victim is surprised, asleep, restrained, or magically held in some way. Sapped characters remain unconcious for 3d 10 full rounds.")
+	elif x == "shield-punch" or x == "shield punch" or x == "sp" or x == "s p":
+		print("Any character equipped with a shield can choose to forego its protection and gain an extra attack known as a shield-punch. The shield-punch is treated as a normal, secondary weapon attack; the primary weapon suffers a\n - 2 penalty to attack rolls that round and the shield-punch attack is rolled with a\n - 4 penalty. A character may use his reaction adjustment due to a high Dexterity score to offset these penalties. Alternatively, the character can substitute his normal attack for a shield punch, with no penalties.\n\nThe exact characteristics (i.e., damage and speed) of each type of shield are noted in Chapter Seven. If the character is trying a shield-punch, he must announce his intention while declaring his combat action and forfeits the defensive benefit of the shield for the round. The character moves into the square of his opponent on his base initiative, then executes the shield punch and backs out into his own square again on the following initiative phase.")
+	elif x == "shield-rush" or  x == "shield rush" or x == "sr" or x == "s r":
+		print("The shield-rush is an attempt to knock someone down by running into them with your shield. The character must have 10 feet (2 spaces) of running room to make an effective shield-rush. Making a shield-rush is treated as a charge attack for purposes of guarding characters with set spears.\n\nWhen the character makes a shield-rush, he makes a normal attack against his enemy's AC. Some shields may provide modifiers or bonuses to the rush; refer to Chapter Seven. After a shield has been used for a rush, it provides no AC bonus for the rest of the round for its bearer. Making a shield-rush also costs the character a normal attack, but it isn't considered an off-hand weapon like a shield-punch.\n\nIf the shield-bearer hits with his attack, he makes an opposed Strength roll against his opponent to see if he knocks him down. The loser of the opposed roll falls down; if both characters fail their Strength rolls, they both fall down. The following modifiers apply to the attacker's Strength score: \n - 4-point bonus or penalty for each size difference \n - +3 if defender is unaware of shield-rush \n - -2 if the dfender has four legs or more\n\nAs noted before, monsters can be assumed to have a Strength of Vk per size category plus their Hit Dice. Instead of an opposed roll, the DM can substitute a saving throw vs. paralyzation for the defender to save time.\n\nIf the shield-rusher misses with his attack roll, he must roll a successful Dexterity check to stay on his feet as he rushes past his target. If he fails, he falls down.")
+	elif x == "trap" or x == "t":
+		print("It's possible to use your weapon or shield to pin your enemy's weapon against his body or to trap the weapon on your own sword-hilt or weapon haft. This maneuver is known as a trap. Traps are much like blocks; the character can get a chance to trap an attack that comes before his action phase by declaring the trap before initiative is rolled, or he can trap any attack that comes in his action phase or later without declaring his action beforehand.\n\nLike with a disarm, the trap is resolved before the normal attack roll is made. A character attempts to trap an enemy's attack by rolling an opposed attack roll versus AC 0 while his opponent rolls against AC 4. If the trapping character wins the opposed roll, the weapon is successfully pinned. Otherwise, the pin fails and the normal attack roll is made.\n\nOnce an enemy's weapon is trapped, he loses any additional attacks he could have made with that weapon in the current round. At the end of the round, the trapping character and his victim make opposed Strength rolls to see if the victim can free his weapon. In each subsequent round, one Strength check is made on the fastest character's base initiative, and a second one at the end of the round.\n\nA character with a trapped weapon can always attack with a secondary weapon or simply abandon the weapon that's been caught. The character who performs the trap cannot use the weapon or shield he's pinning the opponent's weapon with.\n\nTrapping is an excellent tactic to use against an opponent with fewer attacks. It is also a good tactic for a two-weapon fighter to use against a single-weapon fighter; by sacrificing one weapon's attacks, he completely stops his opponent's offense. Another sneaky trick is to have an ally trap a tough opponent's weapon to free up unanswered flank or rear attacks for a second character. Trapping is tougher than a simple block, but worth the effort.")
+	elif x == "trap and break" or x == "Trap and Break" or x == "tb" or x == "t and b" or x == "t b":
+		print("Some weapons, such as the sai or the swordbreaker, are suited for breaking a trapped enemy weapon. When a weapon of this type is used to trap an enemy weapon, the trapping character can declare an attempt to break the weapon. The trapped character must roll a successful item saving throw vs. crushing blow for his weapon or it breaks; for metal weapons, this is a 7 or better on 1 d20. The weapon's magical bonus applies.\n\nIf the break attempt fails, the trapped blade is automatically freed. Otherwise, the weapon is broken. Only swords, knives, or weapons with sword-like components (such as a halberd's spike or a glaive) can be broken.")
+	elif x == "unarmed" or x =="Unarmed Attack" or x == "ua" or x == "unarmed attack" or x == "u a":
+		print("Throwing a punch or trying to get a wrestling hold on the enemy is always a legitimate attack. As noted in Chapter One, trying to engage an armed opponent in unarmed combat is risky; if the armed character threatens the attacker, he gets an immediate attack of opportunity. There are several types of unarmed attacks that can be employed by a character, including punching, wrestling, martial arts, and overbearing. The various types of unarmed combat are described in great detail in Chapter Five. Note that a character has to have a hand free to punch or wrestle someone.")
+	elif x == "unhorse" or x == "Unhorse" or x == "un" or x == "uh":
+		print("A mounted enemy can be knocked off his steed by a number of methods. Whenever a character is in danger of falling off his horse, he must roll a successful riding proficiency check (or a saving throw vs. paralyzation if he doesn't have the riding proficiency) to remain in the saddle. If he fails, he's considered to be knocked down and is lying prone on the ground. \nSome ways to unhorse a mounted character include:\n - Knockdown: Striking a mounted character or the mount hard enough to create a knockdown chance;\n - Damage: Striking a mounted character for 10 or more hit points of damage; \n - Pull/Trip: Hitting a mounted character or the mount itself with a pull/trip attack; \n - Overbearing: Successfully grappling a mounted character with an overbearing attack (he may also be pulled down by losing the opposed Strength check to fight off the overbearing attempt); \n - Damage to the Mount: Wounding a mount during the battle (killing the steed always unhorses a character, no questions asked).")
+	input('press Enter to return')
 
 # MORALE
 def morale():
@@ -2180,7 +2230,7 @@ def market():
 	# roll 3d6
 	roll = random.randint(1,6) + random.randint(1,6) + random.randint(1,6)
 
-	os.system('cls')
+	system('cls')
 	print(' Modifiers')
 	print('┌──────────────────────┬───────────────────┐')
 	print('│ a : war              │ f : gov pressure  │')
@@ -2272,7 +2322,7 @@ def market():
 	for i in range(0,5-len(masterpiece)):
 		masterpiece += " "
 
-	os.system('cls')
+	system('cls')
 	print('┌─────────────┬────────┐')
 	print('│        junk │ {}% │'.format(junk))
 	print('│         bad │ {}% │'.format(bad))
@@ -2289,7 +2339,7 @@ def market():
 
 # Proficiencies
 def profs():
-	os.system('cls')
+	system('cls')
 	print('                                           Proficiencies')
 	print('===================================================================================================')
 	print(' 1  Agriculture          20  Endurance             37  Mining                55  Survival')
@@ -2324,7 +2374,7 @@ def profs():
 	b = int(len(p)/step) + 1
 	page = 1
 	for i in range(0,len(p),step):
-		os.system('cls')
+		system('cls')
 		print('page {} of {}'.format(page,b))
 		print('')
 		a = i
@@ -2338,7 +2388,7 @@ def profs():
 
 # combat modifiers
 def combat():
-	os.system('cls')
+	system('cls')
 	print('')
 	print('                           Cover Modifiers')
 	print('                  Target is     Cover    Concealed')
@@ -2444,7 +2494,7 @@ def displayNew(rain,wind_max,day,weekday,month,monthday,\
 	layout["wilderness"].update(Panel('hunting : {}\n\nfishing : \n{}\n{}\n{}\n{}\n\nforaging :\n   regular forager : {}\nproficient forager : {}\n           problem : {}\n\nwater : {}, {}\nnatural shelter : {}\nfuel : {}\n\nmedicial plants :\n   regular forager : {}\nproficient forager : {}'.format(wilderness[0][1],wilderness[1][0],wilderness[1][1],wilderness[1][2],wilderness[1][3],wilderness[2][1],wilderness[2][2],wilderness[2][3],wilderness[3][0],wilderness[3][1],wilderness[4],wilderness[6],wilderness[5][1],wilderness[5][2]), title='Surrounding Wilderness'))
 	layout["foodlist"].update(Panel(food_string, title='Food List'))
 	layout["morale"].update(Panel('  surprised\n  superior force\n  ally slain by magic\n  1/4 group fallen\n  1/2 group fallen\n  " " " & ally falls\n  tempted (bribe, &c)\n  covering rear guard\n  use magic charge\n  surrounded', title="Morale Checks"))
-	layout["footer"].update(Panel("  d : go to a specific day    1 : add 1 day                     f : add/remove food    m : morale check    t : gen treasure\n  l : new location            s : change location parameters    p : show plants        i : initiative\n sd : market forces          pr : look up proficiency           c : combat mods       sa : save"))
+	layout["footer"].update(Panel("  d : go to a specific day    1 : add 1 day                     f : add/remove food    m : morale check    t : gen treasure    sp : special attack\n  l : new location            s : change location parameters    p : show plants        i : initiative\n sd : market forces          pr : look up proficiency           c : combat mods       sa : save"))
 
 	console.print(layout)
 
@@ -2492,6 +2542,8 @@ while True:
 		prev_day = d
 		d = int(x)
 		season = update_season(d)
+	elif x == "sp":
+		attack_options()
 	elif x == "t":
 		treasure_gen()
 	elif x == "x":

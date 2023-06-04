@@ -12,3 +12,4 @@ future feature list
 - add ninja proficiencies
 - add poison information
 - add disease tracking
+- DONE : add attack options
