@@ -1,15 +1,15 @@
 future feature list
 
-- DONE : tracking food items and determinign when they will go bad
-- DONE : cover and concealment info
-- add info from fighter's handbook
-- add theif proficiencies
 - add psionic proficiencies
-- add bard proficiencies
+- add info from fighter's handbook
 - add paladan proficiencies
 - add barbarian proficiencies
 - add barbarian proficiency updates
 - add ninja proficiencies
-- add poison information
 - add disease tracking
+- DONE : tracking food items and determinign when they will go bad
+- DONE : cover and concealment info
+- DONE : add theif proficiencies
+- DONE : add bard proficiencies
+- DONE : add poison information
 - DONE : add attack options
