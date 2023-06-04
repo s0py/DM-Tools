@@ -2452,7 +2452,19 @@ def combat():
 	print('  X - automatically hits. if')
 	print('      not in combat, defender')
 	print('      is slain automatically.')
-	input('\npress Enter to return ')
+	input('\npress Enter to continue to CLIMBING MODIFIERS ')
+
+	print("")
+	print("Climbing Modifiers")
+	print("- Dex and Shield AC bonuses are lost")
+	print("- Attacks against climbers have a +2 Rear Attack bonus")
+	print("- Climbers suffer -2 to attack, damage, and saving rolls")
+	print("- Attacking from above/below is a +2/-2 bonus")
+	print("- Two-handed weapons are rarely usable")
+	print("- Any damage triggers a climbing check. Unassisted climbers")
+	print("  fall but assisted climbers can't attack, have a -2 to")
+	print("  saving throws, and attacks against them are +2")
+	input("\npress Enter to return")
 
 def displayNew(rain,wind_max,day,weekday,month,monthday,\
 	hi,lo,humiditymod,wind,winddir,eff_hi,eff_lo,spec,\

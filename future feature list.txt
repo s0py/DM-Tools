@@ -1,7 +1,6 @@
 future feature list
 
 - add psionic proficiencies
-- add info from fighter's handbook
 - add paladan proficiencies
 - add barbarian proficiencies
 - add barbarian proficiency updates
@@ -13,3 +12,4 @@ future feature list
 - DONE : add bard proficiencies
 - DONE : add poison information
 - DONE : add attack options
+- DONE : add info from fighter's handbook
