@@ -6,6 +6,7 @@ future feature list
 - add barbarian proficiency updates
 - add ninja proficiencies
 - add disease tracking
+- add movement modifiers (encumberance and terrain)
 - DONE : tracking food items and determinign when they will go bad
 - DONE : cover and concealment info
 - DONE : add theif proficiencies

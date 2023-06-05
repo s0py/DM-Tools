@@ -2016,29 +2016,132 @@ def plants(climate, terrain, season):
 			print("└────────────────────────────────┴──────────────────────────────────────────────────────────────┴──────┘")
 			x = input('press Enter to continue')
 
+# movement modifiers
+def movement():
+	system('cls')
+	print("")
+	print("                    Modified Movement Rate               	|	Terrain                                Movement")
+	print("     Base |  12  11  10   9   8   7   6   5   4   3   2   1	|	-----------------------------------------------")
+	print(" Strength |   6   5   5   4   4   3   3   2   2   1   1   1	|	0 Normal                                      1")
+	print("----------+------------------------------------------------	|	1 Heavy brush or thicket                    1/3")
+	print("       2  |   1   -   2   -   -   3   -   -   4   -   -   5	|	2 Light brush or forest                     2/3")
+	print("       3  |   5   -   6   -   7   -   -   8   -   9   -   -	|	3 Ice or slippery footing                   2/3")
+	print("                                                         	|	4 Steep slope or rough ground               1/2")
+	print("     4–5  |  10  11  12  13  14  15  16  17  18  19  20  21	|	5 knee-deep snow, water, soft sand          2/3")
+	print("     6–7  |  20  23  26  29  32  35  38  41  44  47  50  53	|	6 Waist-deep snow or water                  1/2")
+	print("     8–9  |  35  40  45  50  55  60  65  70  75  80  85  89	|	7 Shoulder-deep snow or water               1/3")
+	print("")
+	print("   10–11  |  40  46  52  58  64  70  76  82  88  94 100 106")
+	print("   12–13  |  45  53  61  69  77  85  93 101 109 117 125 133")
+	print("   14–15  |  55  65  75  85  95 105 115 125 135 145 155 165")
+	print("")
+	print("      16  |  70  80  90 100 110 120 130 140 150 160 170 180")
+	print("      17  |  85  97 109 121 133 145 157 169 181 193 205 217")
+	print("      18  | 110 123 136 149 162 175 188 201 214 227 240 253")
+	print("")
+	print("18/01–50  | 135 148 161 174 187 200 213 226 239 252 265 278")
+	print("18/51–75  | 160 173 186 199 212 225 238 251 264 277 290 303")
+	print("18/76–90  | 185 198 211 224 237 250 263 276 289 302 315 328")
+	print("18/91–99  | 235 248 261 274 287 300 313 326 339 352 365 378")
+	print("18/00     | 335 348 361 374 387 400 413 426 439 452 465 478")
+	print("")
+	strength = input("enter a strength score or press Enter to return ")
+	if strength != "":
+		if strength == 18:
+			exceptional = input("please enter your exceptional strength ")
+			exceptional = int(exceptional)
+			if exceptional in range(0,51):
+				strength += 1
+			elif exceptional in range(51,76):
+				strength += 2
+			elif exceptional in range(76,92):
+				strength += 3
+			elif exceptional in range(91,100):
+				strength += 4
+			elif exceptional == 100:
+				strength += 5
+		weight = input("enter a weight (whole pounds) or press Enter to return ")
+		if weight != "":
+			terrain = input("enter the number associated with the terrain or press Enter to return ")
+			if terrain != "":
+				strength = int(strength)
+				weight = int(weight)
+				terrain = int(terrain)
+				encum_list = ((1,1,2,2,2,3,3,3,4,4,4,5),
+                                (5,5,6,6,7,7,7,8,8,9,9,9),
+                                (10,11,12,13,14,15,16,17,18,19,20,21),
+                                (10,11,12,13,14,15,16,17,18,19,20,21),
+                                (20,23,26,29,32,35,38,41,44,47,50,53),
+                                (20,23,26,29,32,35,38,41,44,47,50,53),
+                                (35,40,45,50,55,60,65,70,75,80,85,89),
+                                (35,40,45,50,55,60,65,70,75,80,85,89),
+                                (40,46,52,58,64,70,76,82,88,94,100,106),
+                                (40,46,52,58,64,70,76,82,88,94,100,106),
+                                (45,53,61,69,77,85,93,101,109,117,125,133),
+                                (45,53,61,69,77,85,93,101,109,117,125,133),
+                                (55,65,75,85,95,105,115,125,135,145,155,165),
+                                (55,65,75,85,95,105,115,125,135,145,155,165),
+                                (70,80,90,100,110,120,130,140,150,160,170,180),
+                                (85,97,109,121,133,145,157,169,181,193,205,217),
+                                (110,123,136,149,162,175,188,201,214,227,240,253),
+                                (135,148,161,174,187,200,213,226,239,252,265,278),
+                                (160,173,186,199,212,225,238,251,264,277,290,303),
+                                (185,198,211,224,237,250,263,276,289,302,315,328),
+                                (235,248,261,274,287,300,313,326,339,352,365,378),
+                                (335,348,361,374,387,400,413,426,439,452,465,478))
+				movement_index = 0
+				for i in range(0,len(encum_list[strength-2])):
+					if weight < encum_list[strength-2][i]:
+						movement_index = i-1
+						break
+				med_movements = (12,11,10,9,8,7,6,5,4,3,2,1)
+				sml_movements =  (6, 5, 5,4,4,3,3,2,2,1,1,1)
+
+				terrain_mods = [1,0.34,0.67,0.667,0.5,0.67,0.5,0.34]
+
+				print("\n [ {} ] / [ {} ] base move mansized/small".format(med_movements[movement_index],sml_movements[movement_index]))
+				print(" [ {} ] / [ {} ] ACTUAL MOVEMENT (accounting for terrain)".format(int(med_movements[movement_index] * terrain_mods[terrain]),int(sml_movements[movement_index] * terrain_mods[terrain])))
+				input("press Enter to return")
+
+
+
 # display the rules for special combat options
 def attack_options():
 	system('cls')
 	print('')
-	print('┌─────────────┬────────────────┐')
-	print('│ Block       │ Sap            │')
-	print('├─────────────┼────────────────┤')
-	print('│ Called Shot │ Shield-punch   │')
-	print('├─────────────┼────────────────┤')
-	print('│ Disarm      │ Shield-rush    │')
-	print('├─────────────┼────────────────┤')
-	print('│ Grab        │ Trap           │')
-	print('├─────────────┼────────────────┤')
-	print('│ Overbear    │ Trap and Break │')
-	print('├─────────────┼────────────────┤')
-	print('│ Pin         │ Unarmed Attack │')
-	print('├─────────────┼────────────────┤')
-	print('│ Pull/Trip   │ Unhorse        │')
-	print('└─────────────┴────────────────┘')
+	print('┌─────────────┬────────────────┐  ┌──────────┐')
+	print('│ Block       │ Sap            │  │ Charge   │')
+	print('├─────────────┼────────────────┤  ├──────────┤')
+	print('│ Called Shot │ Shield-punch   │  │ Cover    │')
+	print('├─────────────┼────────────────┤  ├──────────┤')
+	print('│ Disarm      │ Shield-rush    │  │ Guard    │')
+	print('├─────────────┼────────────────┤  ├──────────┤')
+	print('│ Grab        │ Trap           │  │ Parry    │')
+	print('├─────────────┼────────────────┤  ├──────────┤')
+	print('│ Overbear    │ Trap and Break │  │ Run      │')
+	print('├─────────────┼────────────────┤  ├──────────┤')
+	print('│ Pin         │ Unarmed Attack │  │ Sprint   │')
+	print('├─────────────┼────────────────┤  ├──────────┤')
+	print('│ Pull/Trip   │ Unhorse        │  │ Withdraw │')
+	print('└─────────────┴────────────────┘  └──────────┘')
 	print('')
 	x = input('what special attack: ')
 	print('')
-	if x == "block" or x == "Block" or x =="b":
+	if x == "charge" or x == "Charge" or x == "ch":
+		print("Characters and monsters can charge to rapidly close for\ncombat and make an attack. Charging is a full-move\naction, but a charging character may move 114 times his\nbase movement when he charges. A knight with a\nmovement of 6 can charge an enemy up to 9 spaces\naway.\nCharacters begin their charge on their base initiative,\nmoving up to one-half the distance of the charge. In the\nfollowing phase, they move the remainder of the dis-\ntance. Unlike most attack forms, the charge attack is\nresolved the moment the attacker arrives. If the knight\nabove has a base initiative of fast and an opponent is\nstanding 7 squares away, the knight moves 5 spaces in\nthe fast phase and 2 more in the average phase, at\nwhich point he attacks immediately.\nCharging (which might more accurately be called the\nreckless attack) gives characters several advantages but\nalso imposes some penalties. The charging character\ngains a +2 bonus on his attack roll. Some weapons,\nsuch as lances, are suited for charging and inflict\ndouble damage when used in a charge.\nBecause they are so intent on the attack, however,\ncharging characters are at a disadvantage defensively.\nThey lose all Dexterity bonuses to Armor Class and suffer\na +1 penalty to AC in addition to that. Guarding\ncharacters with weapons longer than the charger's\nautomatically strike first. In addition, characters can set\nspears (see Guard) against charges.")
+	elif x == "cover" or x == "Cover" or x =="co":
+		print("A character with a cocked and loaded crossbow, or an\narrow nocked and drawn in a bow, can announce that\nhe is covering an opponent within his weapon's short\nrange. The covering character can only choose to cover\na single square on the board, as long as that square is\nwithin the weapon's short range and in sight. Only characters\nwith a weapon proficiency slot in bow or crossbow\ncan cover someone in this manner. Covering\nsituations usually are created by the circumstances of\nthe initial encounter; for example, an archer may surprise\nhis enemy, cover him, and order him to drop his\nweapon. Characters can also declare a combat action\nto cover someone.\nSince the arrow or bolt is ready to be fired, the covering\ncharacter's first shot is fast (or very fast if the character\nis a specialist.) See Bows and Crossbows in\nChapter Seven. The covering character automatically\nwins initiative against the covered target. It is possible\nfor a very fast creature to beat out the shot of a proficient\narcher, but even very fast creatures can be covered\nby a specialist.\nThe character can hold his cover until later in the\nround, if he wants to see what his target is going to do.\nHe can fire first in any later phase. After the first shot\nhas been loosed, the covering character can perform\nthe rest of his missile fire at the regular action phase\nand rate of fire.\nThe covering shot itself is made with a +2 bonus to\nthe attack roll. Covering is handy for freezing opponents\nin their tracks, since everybody knows how quickly an\narrow or bolt can be released once it is drawn.\nCovering can also be used with any hand-held\nbladed weapon—basically, the character puts her\nsword to an opponent's throat in a single adjacent\nsquare and menaces him. The victim must be stunned,\ndazed, pinned, unconscious, or surprised for a character\nto cover him with a melee weapon. As with bows\nand crossbows, the covering character automatically\nwins initiative against her target and can attack in the\nfast phase, or in the very fast phase if she is a specialist.\nThe attack is made with a +2 bonus to hit, and the\ncritical number (see Critical Hits in Chapter Six) drops\nto a 16.")
+	elif x == "guard" or x == "Guard" or x == "gu":
+		print("When a character guards, she waits for her opponents\nto come to her. Guarding is a half-move action, or a nomove\naction if the character stands her ground. A\nguarding character strikes the moment an attacker\nmoves into the guarding character's threatening\nsquares, regardless of her actual initiative and action\nphase. The only way an enemy can attack a guarding\ncharacter first is with a longer-ranged weapon.\nIf a guarding character is attacked by a charging character,\nthe character that won initiative attacks first\n(unless one of the characters has a longer-ranged\nweapon than the other, of course). Guarding characters\nare considered to be set for charge, and spears and\nspear-like polearms inflict double damage against\ncharging creatures (see Chapter Seven).")
+	elif x == "parry" or x == "Parry" or x == "pa":
+		print("Sometimes the best thing to do is take cover and try\nnot to get clobbered. Any character can choose to parry\nas a combat action. Parrying is a no-move action that is\nin effect for the entire combat round. If a character parries,\nhe cannot move, attack, or cast spells.\n\nParrying reduces a nonwarrior character's Armor\nClass by one-half his level. A 6th-level wizard with an\nAC of 5 who parries reduces his AC to 2. Warriors who\nchoose to parry reduce their AC by one-half their level,\nplus one. A 6th-level fighter gets an AC bonus of 4 by\nparrying.")
+	elif x == "run" or x == "Run" or x == "r":
+		print("A character can double his base movement by running.\nRunning is considered a full-move action; the character\ncan't do anything else in the same combat round that\nhe runs. Running on a battlefield is dangerous; the\ncharacter loses all Dexterity bonuses to his Armor Class\nand suffers a +1 AC penalty on top of that. In addition,\nhe is considered to be charging if he runs into a square\nthreatened by an opponent with a set spear.\n\nCharacters can maintain a run as long as they have\nthe necessary fatigue points (see Fatigue, below). Outside\nof combat, they can run for a number of rounds\nequal to their Constitution score. After that, they must\nstop and rest. See Jogging and Running in the Player's\nHandbook under Chapter 14: Time and Movement for\nmore information.")
+	elif x == "sprint" or x == "Spring" or x == "sp":
+		print("A character can triple his base movement by sprinting.\nLike running, sprinting is a full-move action that drops\nthe character's defenses for the round.")
+	elif x == "withdraw" or x == "Withdraw" or x == "with" or x == "w" or x == "wd":
+		print("Withdrawing is the only safe way to leave a square that\nis threatened by an opponent. When a character withdraws,\nhe backs carefully away from his opponent without\nturning his back or creating an attack of opportunity\nfor his opponent.\n\nWithdrawing is a half-move that takes place on the\ncharacter's base initiative. A withdrawing character cannot\nattack or cast spells, although he can still get attacks\nof opportunity.")
+	elif x == "block" or x == "Block" or x =="b":
 		print("A character can declare that she is using one of her attacks to block an opponent's strike. Blocking is a hard parry with a weapon that deflects an opponent's attack. Any weapon except rope-like things such as nets, lassoes, or slings can be used to block.\n\nWhen a character tries to block an attack, she makes a normal attack roll against AC 4. Her opponent makes a normal attack roll against her Armor Class. The strike is blocked if the character succeeds with a lower roll than her enemy succeeded with. If the attacker failed anyway, it's a miss no matter what the blocking character rolled. If the blocking character failed but her attacker succeeded, it's a hit despite the block attempt. If the character announces her block before initiative is rolled, she can block an attack even if it beats her action phase. If she decides to wait, she can only block attacks in her action phase or later.\n\nBlocking is an excellent tactic for characters with multiple attacks to use against characters or monsters with only one attack. A rapier specialist with a main-gauche in her off hand can use her off-hand weapon or one of the rapier attacks to block while using the rest of her attacks offensively.")
 	elif x == "called shot" or x == "called" or x == "cs" or x == "c s" or x == "Called Shot" or x == "Called":
 		print("A called shot is an attack at a specific location on the target. For example, a called shot can be used to attack the head of an enemy who isn't wearing a helm, the unarmored legs of a character wearing only a breastplate, or the special weakness of a monster with an Achilles' heel.\n\nCalled shots have to be announced before the attack roll is made. When the called shot is announced, the character's action phase is delayed by one category; a bowshot that would normally be in the average phase becomes a slow action if the archer decides to make a called shot. If you're not playing with the initiative system described in Chapter One, assume called shots receive a +1 initiative penalty.\n\nCalled shots normally present the attacker with a\n - 4 penalty on his attack roll, but the DM can modify this for the circumstances. If the target is surprised or not expecting the attack, the called shot modifier may not apply at all. On the other hand, a particularly difficult called shot (stabbing an enemy through the eyeslit of his visor, for example) may inflict a\n - 6 or even a\n - 8 penalty to the attack roll. Called shots are disrupted if the character attempting it suffers a knockdown.\n\nAlthough called shots are normally most useful for special combat effects, like breaking a beaker of acid in an evil wizard's hand, they can also be useful against partially unarmored opponents. An enemy in full plate mail with no helmet has an AC 10 head; it's easier to make the called shot with a\n - 4 penalty against that AC 10 than to swing at the enemy's normal AC of 1. If a called shot is used to strike a specific body area and results in a critical hit, ignore the location die of the critical hit roll and just roll the effect for the area struck. (See Chapter Six for more information on critical hits.)\n\nCalled shots can also be used to fire missile weapons into a melee without the risk of hitting an ally. If the called shot misses, no one else is in danger of being hit by the missile.\n\nAs an optional rule, the DM may allow called shots to be used to force an automatic retreat or knockdown effect, rather than inflict damage.")
@@ -2422,7 +2525,7 @@ def profs():
 		input('press Enter to continue ')
 	input('press Enter to return ')
 
-# combat modifiers
+# Combat Modifiers
 def combat():
 	system('cls')
 	print('')
@@ -2542,7 +2645,7 @@ def displayNew(rain,wind_max,day,weekday,month,monthday,\
 	layout["wilderness"].update(Panel('hunting : {}\n\nfishing : \n{}\n{}\n{}\n{}\n\nforaging :\n   regular forager : {}\nproficient forager : {}\n           problem : {}\n\nwater : {}, {}\nnatural shelter : {}\nfuel : {}\n\nmedicial plants :\n   regular forager : {}\nproficient forager : {}'.format(wilderness[0][1],wilderness[1][0],wilderness[1][1],wilderness[1][2],wilderness[1][3],wilderness[2][1],wilderness[2][2],wilderness[2][3],wilderness[3][0],wilderness[3][1],wilderness[4],wilderness[6],wilderness[5][1],wilderness[5][2]), title='Surrounding Wilderness'))
 	layout["foodlist"].update(Panel(food_string, title='Food List'))
 	layout["morale"].update(Panel('  surprised\n  superior force\n  ally slain by magic\n  1/4 group fallen\n  1/2 group fallen\n  " " " & ally falls\n  tempted (bribe, &c)\n  covering rear guard\n  use magic charge\n  surrounded', title="Morale Checks"))
-	layout["footer"].update(Panel("  d : go to a specific day    1 : add 1 day                     f : add/remove food    m : morale check    t : gen treasure    sp : special attack\n  l : new location            s : change location parameters    p : show plants        i : initiative     po : poison info\n sd : market forces          pr : look up proficiency           c : combat mods       sa : save"))
+	layout["footer"].update(Panel("  d : go to a specific day    1 : add 1 day                     f : add/remove food    m : morale check    t : gen treasure    sp : special attack\n  l : new location            s : change location parameters    p : show plants        i : initiative     po : poison info\n sd : market forces          pr : look up proficiency           c : combat mods       sa : save          mov : movement"))
 
 	console.print(layout)
 
@@ -2590,6 +2693,8 @@ while True:
 		prev_day = d
 		d = int(x)
 		season = update_season(d)
+	elif x == "mov":
+		movement()
 	elif x == "sp":
 		attack_options()
 	elif x == "t":
